@@ -9,7 +9,27 @@
 
 import UIKit
 
+// 代理
+protocol YYVisitorViewDelegate: NSObjectProtocol {
+    func visitorViewWillLogin()
+    func visitorViewWillRegister()
+}
+
 class YYVisitorView: UIView {
+    
+    var visitorViewDelegate: YYVisitorViewDelegate?
+    
+    /// 登录
+    func willLogin() {
+        print("登录")
+        visitorViewDelegate?.visitorViewWillLogin()
+    }
+    
+    /// 注册
+    func willRegister() {
+        print("注册")
+        visitorViewDelegate?.visitorViewWillRegister()
+    }
     
     
     // MARK: - 构造方法
@@ -23,7 +43,6 @@ class YYVisitorView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     /// 设置不同控制器页面显示不同的视图信息
     func setupInfo(imageName: String, message: String, isHome: Bool = true) {
@@ -145,6 +164,7 @@ class YYVisitorView: UIView {
         button.setTitle("注册", forState: UIControlState.Normal)
         button.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        button.addTarget(self, action: "willRegister", forControlEvents: UIControlEvents.TouchUpInside)
         button.sizeToFit()
         return button
     }()
@@ -154,6 +174,7 @@ class YYVisitorView: UIView {
         button.setTitle("登录", forState: UIControlState.Normal)
         button.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        button.addTarget(self, action: "willLogin", forControlEvents: UIControlEvents.TouchUpInside)
         button.sizeToFit()
         return button
     }()

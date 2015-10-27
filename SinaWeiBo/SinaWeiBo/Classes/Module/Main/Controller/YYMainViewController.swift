@@ -13,6 +13,8 @@ class YYMainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // 设置tabBar的图标颜色
         tabBar.tintColor = UIColor.orangeColor()
         
@@ -105,7 +107,7 @@ class YYMainViewController: UITabBarController {
 //        homeVC.title = "首页"
 //        homeVC.tabBarItem.image = UIImage(named: "tabbar_home")
 //  // 设置选中图片的颜色                                                                              homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Selected)
-// 设置选中图片的渲染模式
+//  // 设置选中图片的渲染模式
 //  homeVC.tabBarItem.selectedImage = UIImage(named: "tabbar_home_highlighted")?.imageWithRenderingMode( UIImageRenderingMode.AlwaysOriginal)
 //        // 添加tabBar控制器的子控制器
 //        addChildViewController(UINavigationController(rootViewController: homeVC))

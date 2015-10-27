@@ -32,11 +32,14 @@ class YYMainTabBar: UITabBar {
                 print("view: \(view)")
                 // 设置view的frame
                 view.frame = CGRectOffset(frame, width * CGFloat(index), 0)
-//                index++
-//                if index == 2 {
-//                    index++
-//                }
+                
+                // 三目运算
                 index += index == 1 ? 2 : 1
+                
+                // index++
+                // if index == 2 {
+                //    index++
+                // }
             }
         }
         // 设置composeButton的frame

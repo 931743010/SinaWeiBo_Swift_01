@@ -9,8 +9,7 @@
 
 import UIKit
 
-class YYBaseViewController: UITableViewController {
-    
+class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
     
     let userLogin = false
     var visitorView: YYVisitorView?
@@ -26,6 +25,7 @@ class YYBaseViewController: UITableViewController {
         visitorView = YYVisitorView()
         view = visitorView
         
+        // 切换不同控制器页面的访客视图
         if self is YYHomeViewController {
             visitorView?.startRotationAnimation()
         } else if self is YYMessageViewController {
@@ -35,6 +35,62 @@ class YYBaseViewController: UITableViewController {
         } else if self is YYProfileViewController {
             visitorView?.setupInfo("visitordiscover_image_profile", message: "登录后,你的微博,相册,个人资料会显示在这里,展示给别人", isHome: false)
         }
+        // 指定代理
+        visitorView?.visitorViewDelegate = self
+        
+        let barItem = UIBarButtonItem()
+        barItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Normal)
+        
+        // 添加导航栏右边按钮
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorViewWillLogin")
+        // 添加导航栏左边按钮
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorViewWillRegister")
         
     }
+    
+    // MARK: -  实现代理方法
+    // 登录
+    func visitorViewWillLogin() {
+        print(__FUNCTION__)
+        
+        // 创建授权登录控制器
+        let authorizeLoginVC = YYAuthorizeViewController()
+        // 跳转到授权登录控制器
+        presentViewController(UINavigationController(rootViewController: authorizeLoginVC), animated: true) { () -> Void in
+            print("点击了登录按钮,跳转到授权登录界面")
+        }
+    }
+    
+    // 注册
+    func visitorViewWillRegister() {
+        print(__FUNCTION__)
+        
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
