@@ -10,19 +10,8 @@ import UIKit
 
 class YYMainViewController: UITabBarController {
     
-    func composeButtonClick() {
-        print(__FUNCTION__)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 添加tabBar中间的撰写按钮
-        let newTabBar = YYMainTabBar()
-        // 添加按钮的点击事件
-        newTabBar.composeButton.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
-        // 使用KVC赋值
-        setValue(newTabBar, forKey: "tabBar")
         
         // 设置tabBar的图标颜色
         tabBar.tintColor = UIColor.orangeColor()
@@ -35,6 +24,10 @@ class YYMainViewController: UITabBarController {
         let messageVC = YYMessageViewController()
         self.addChildViewController(messageVC, title: "消息", nmlImgName: "tabbar_message_center")
         
+        // 添加中间[撰写按钮]的控制器
+        let controller = UIViewController()
+        self.addChildViewController(controller, title: "", nmlImgName: "Arvin")
+        
         // 添加[发现]控制器
         let discoverVC = YYDiscoverViewController()
         self.addChildViewController(discoverVC, title: "发现", nmlImgName: "tabbar_discover")
@@ -43,6 +36,17 @@ class YYMainViewController: UITabBarController {
         let profileVC = YYProfileViewController()
         self.addChildViewController(profileVC, title: "我", nmlImgName: "tabbar_profile")
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 计算每个按钮的宽度
+        let width = tabBar.bounds.width / CGFloat(5)
+        // 设置composeButton按钮的frame
+        composeButton.frame = CGRect(x: width * 2, y: 0, width: width, height: tabBar.bounds.height)
+        // 添加撰写按钮到tabBar
+        tabBar.addSubview(composeButton)
     }
     
     /**
@@ -61,9 +65,42 @@ class YYMainViewController: UITabBarController {
         self.addChildViewController(UINavigationController(rootViewController: controller))
     }
     
+    // MARK: - 撰写按钮懒加载
+    lazy var composeButton: UIButton = {
+        // 创建按钮
+        let button = UIButton()
+        
+        // 设置按钮图片
+        button.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), forState: UIControlState.Highlighted)
+        
+        // 设置按钮背景图片
+        button.setBackgroundImage(UIImage(named: "tabbar_compose_button"), forState: UIControlState.Normal)
+        button.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), forState: UIControlState.Highlighted)
+        
+        // 添加按钮点击事件
+        button.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // 返回按钮
+        return button
+        
+        }()
+    
+    // 点击了撰写按钮
+    func composeButtonClick() {
+        print(__FUNCTION__)
+    }
     
     // 抽取代码备份
     private func backup() {
+        
+//        // 添加tabBar中间的撰写按钮
+//        let newTabBar = YYMainTabBar()
+//        // 添加按钮的点击事件
+//        newTabBar.composeButton.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
+//        // 使用KVC赋值
+//        setValue(newTabBar, forKey: "tabBar")
+        
         
 //        homeVC.title = "首页"
 //        homeVC.tabBarItem.image = UIImage(named: "tabbar_home")
@@ -90,5 +127,6 @@ class YYMainViewController: UITabBarController {
 //        profileVC.tabBarItem.image = UIImage(named: "tabbar_profile")
 //        // 添加tabBar控制器的子控制器
 //        addChildViewController(UINavigationController(rootViewController: profileVC))
+        
     }
 }

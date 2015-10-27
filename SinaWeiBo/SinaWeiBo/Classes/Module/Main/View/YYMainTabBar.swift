@@ -63,6 +63,6 @@ class YYMainTabBar: UITabBar {
         // 返回按钮
         return button
         
-        }()
+    }()
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YYHomeViewController: UITableViewController {
+class YYHomeViewController: YYBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
