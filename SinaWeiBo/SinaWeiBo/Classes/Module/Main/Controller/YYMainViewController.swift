@@ -10,8 +10,19 @@ import UIKit
 
 class YYMainViewController: UITabBarController {
     
+    func composeButtonClick() {
+        print(__FUNCTION__)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 添加tabBar中间的撰写按钮
+        let newTabBar = YYMainTabBar()
+        // 添加按钮的点击事件
+        newTabBar.composeButton.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
+        // 使用KVC赋值
+        setValue(newTabBar, forKey: "tabBar")
         
         // 设置tabBar的图标颜色
         tabBar.tintColor = UIColor.orangeColor()
@@ -51,8 +62,9 @@ class YYMainViewController: UITabBarController {
     }
     
     
-    // 备份
+    // 抽取代码备份
     private func backup() {
+        
 //        homeVC.title = "首页"
 //        homeVC.tabBarItem.image = UIImage(named: "tabbar_home")
 //  // 设置选中图片的颜色                                                                              homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Selected)
@@ -79,19 +91,4 @@ class YYMainViewController: UITabBarController {
 //        // 添加tabBar控制器的子控制器
 //        addChildViewController(UINavigationController(rootViewController: profileVC))
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
