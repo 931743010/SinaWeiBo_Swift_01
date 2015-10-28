@@ -14,5 +14,9 @@ class YYMessageViewController: YYBaseViewController {
         super.viewDidLoad()
 
     }
+    
+    deinit {
+        print("挂了")
+    }
 
 }

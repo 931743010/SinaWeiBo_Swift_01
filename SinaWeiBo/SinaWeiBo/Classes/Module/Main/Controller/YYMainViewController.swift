@@ -13,8 +13,6 @@ class YYMainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // 设置tabBar的图标颜色
         tabBar.tintColor = UIColor.orangeColor()
         
@@ -86,12 +84,14 @@ class YYMainViewController: UITabBarController {
         // 返回按钮
         return button
         
-        }()
+    }()
     
     // 点击了撰写按钮
     func composeButtonClick() {
         print(__FUNCTION__)
+        
     }
+    
     
     // 抽取代码备份
     private func backup() {
@@ -131,4 +131,5 @@ class YYMainViewController: UITabBarController {
 //        addChildViewController(UINavigationController(rootViewController: profileVC))
         
     }
+    
 }

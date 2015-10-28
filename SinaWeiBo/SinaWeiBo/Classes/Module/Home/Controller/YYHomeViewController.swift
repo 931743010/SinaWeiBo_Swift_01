@@ -14,4 +14,8 @@ class YYHomeViewController: YYBaseViewController {
         super.viewDidLoad()
 
     }
+    
+    deinit {
+        print("挂了")
+    }
 }

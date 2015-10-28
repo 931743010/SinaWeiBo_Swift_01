@@ -13,6 +13,11 @@ class YYProfileViewController: YYBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+    }
+    
+    deinit {
+        print("挂了")
     }
 
 }

@@ -9,9 +9,10 @@
 
 import UIKit
 
-class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
+class YYBaseViewController: UITableViewController {
     
     let userLogin = false
+    // 定义访客视图(可选类型)
     var visitorView: YYVisitorView?
     
     override func loadView() {
@@ -19,17 +20,23 @@ class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
         userLogin ? super.loadView() : setupVisitorView()
     }
     
-    /// 创建访客视图
+    // MARK: - 设置访客视图
     func setupVisitorView() {
         
         visitorView = YYVisitorView()
         view = visitorView
+        print(self)
         
         // 切换不同控制器页面的访客视图
         if self is YYHomeViewController {
+            
             visitorView?.startRotationAnimation()
+            // 使用通知监听应用 进入后台 / 进入前台 的状态
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+            
         } else if self is YYMessageViewController {
-            visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,别人评论你微博,发给你的消息,都会在这里收到通知", isHome: false)
+            visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,别人评论你的微博,发给你的消息,都会在这里收到通知", isHome: false)
         } else if self is YYDiscoverViewController {
             visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,最新,最热微博尽在掌握,不再会与实事潮流擦肩而过", isHome: false)
         } else if self is YYProfileViewController {
@@ -38,8 +45,8 @@ class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
         // 指定代理
         visitorView?.visitorViewDelegate = self
         
-        let barItem = UIBarButtonItem()
-        barItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Normal)
+        // 在这里设置全局导航栏按钮颜色迟了,须在AppDelegate中提前设置
+        // UINavigationBar.appearance().tintColor = UIColor.orangeColor()
         
         // 添加导航栏右边按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorViewWillLogin")
@@ -48,10 +55,23 @@ class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
         
     }
     
-    // MARK: -  实现代理方法
+    // MARK: - 监听通知
+    private func didBecomeActive() {
+        // 进入前台
+        
+    }
+    
+    private func didEnterBackground() {
+        // 进入后台
+        
+    }
+    
+}
+
+// MARK: - 扩展(Category),实现代理方法
+extension YYBaseViewController: YYVisitorViewDelegate {
     // 登录
     func visitorViewWillLogin() {
-        print(__FUNCTION__)
         
         // 创建授权登录控制器
         let authorizeLoginVC = YYAuthorizeViewController()
@@ -66,31 +86,7 @@ class YYBaseViewController: UITableViewController,YYVisitorViewDelegate {
         print(__FUNCTION__)
         
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

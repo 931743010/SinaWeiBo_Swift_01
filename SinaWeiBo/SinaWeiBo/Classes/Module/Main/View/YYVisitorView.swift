@@ -9,7 +9,7 @@
 
 import UIKit
 
-// 代理
+// 定义代理方法
 protocol YYVisitorViewDelegate: NSObjectProtocol {
     func visitorViewWillLogin()
     func visitorViewWillRegister()
@@ -17,7 +17,8 @@ protocol YYVisitorViewDelegate: NSObjectProtocol {
 
 class YYVisitorView: UIView {
     
-    var visitorViewDelegate: YYVisitorViewDelegate?
+    // MARK: - 定义代理属性(可选类型,可能有值/可能没值)
+    weak var visitorViewDelegate: YYVisitorViewDelegate?
     
     /// 登录
     func willLogin() {
@@ -36,16 +37,22 @@ class YYVisitorView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // 布局访客视图UI
-        self.layoutVisitorUI()
+        // 添加子控件
+        addSubview(iconView)         // 图标转轮
+        addSubview(coverView)        // 遮盖视图
+        addSubview(houseView)        // 房子图标
+        addSubview(messageLabel)     // 信息标签
+        addSubview(registerBtn)      // 注册按钮
+        addSubview(loginBtn)         // 登录按钮
+        self.layoutVisitorUI()       // 布局访客视图UI
     }
-    
+    // 从xib/storyboard加载控件会调用此方法
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 设置不同控制器页面显示不同的视图信息
-    func setupInfo(imageName: String, message: String, isHome: Bool = true) {
+    /// 设置不同控制器页面显示不同的访客视图信息
+    func setupInfo(imageName: String, message: String, isHome: Bool) {
         iconView.image = UIImage(named: imageName)    // 图标
         messageLabel.text = message                   // 信息
         messageLabel.sizeToFit()                      // 自适应size
@@ -65,15 +72,6 @@ class YYVisitorView: UIView {
     
     /// 布局访客视图UI
     func layoutVisitorUI() {
-        
-        // 添加子控件
-        addSubview(iconView)         // 图标转轮
-        addSubview(houseView)        // 房子图标
-        addSubview(coverView)        // 遮盖视图
-        addSubview(messageLabel)     // 信息标签
-        addSubview(registerBtn)      // 注册按钮
-        addSubview(loginBtn)         // 登录按钮
-        
         
         // ---------------使用AutoLayout添加控件约束---------------- //
         // 约束公式: view1.attr1 = view2.attr2 * multiplier + constant
@@ -117,13 +115,12 @@ class YYVisitorView: UIView {
         self.addConstraint(NSLayoutConstraint(item: coverView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: coverView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0))
         
-        /// 设置当前View的背景色
+        // *******设置当前View的背景色******* //
         // self.backgroundColor = UIColor.orangeColor()
         self.backgroundColor = UIColor(white: 237.0 / 255.0, alpha: 1)
-        
     }
     
-    // MARK: - 懒加载
+    // MARK: - 懒加载(私有方法)
     // 转轮视图
     private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
@@ -177,7 +174,6 @@ class YYVisitorView: UIView {
         button.addTarget(self, action: "willLogin", forControlEvents: UIControlEvents.TouchUpInside)
         button.sizeToFit()
         return button
-    }()
-    
+    }()    
 }
 

@@ -11,16 +11,17 @@ import UIKit
 
 class YYMainTabBar: UITabBar {
     
+    // 定义tabBar的按钮个数
     let count: CGFloat = 5
     
     // 重写layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // 计算tabBar宽度
+        // 计算每个tabBarItem的宽度
         let width = bounds.width / count
         
-        // 计算frame
+        // 设置每个tabBarItem的frame
         let frame = CGRect(x: 0, y: 0, width: width, height: bounds.height)
         
         var index = 0
@@ -29,22 +30,16 @@ class YYMainTabBar: UITabBar {
             
             // 判断view是否是某个类型
             if view is UIControl && !(view is UIButton) {
-                print("view: \(view)")
-                // 设置view的frame
+            
+                // 设置子控件的偏移位置
                 view.frame = CGRectOffset(frame, width * CGFloat(index), 0)
                 
-                // 三目运算
+                // 三元表达式
                 index += index == 1 ? 2 : 1
-                
-                // index++
-                // if index == 2 {
-                //    index++
-                // }
             }
         }
-        // 设置composeButton的frame
+        // 设置composeButton的frame(添加撰写按钮到中间位置)
         composeButton.frame = CGRectOffset(frame, width * 2, 0)
-        
     }
     
     // MARK: - 懒加载
@@ -65,7 +60,6 @@ class YYMainTabBar: UITabBar {
         
         // 返回按钮
         return button
-        
     }()
     
 }

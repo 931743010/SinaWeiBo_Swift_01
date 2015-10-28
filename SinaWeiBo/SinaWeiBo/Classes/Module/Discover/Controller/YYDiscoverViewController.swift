@@ -15,4 +15,7 @@ class YYDiscoverViewController: YYBaseViewController {
 
     }
 
+    deinit {
+        print("挂了")
+    }
 }

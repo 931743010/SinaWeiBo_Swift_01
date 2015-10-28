@@ -13,11 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // 启动界面休眠0.5秒
         NSThread.sleepForTimeInterval(0.5)
+        
+        // 设置全局导航栏按钮文字的颜色
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
         
         // 创建Window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -26,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBar = YYMainViewController()
         
         // 设置窗口根控制器为tabBar
+        // ? 前面的变量有值时才执行后面的方法,没值时则啥都不做
         self.window?.rootViewController = tabBar
         
         // 设置window的背景颜色
