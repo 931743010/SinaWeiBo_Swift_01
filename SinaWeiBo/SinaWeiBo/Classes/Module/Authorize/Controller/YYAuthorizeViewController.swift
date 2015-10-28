@@ -10,11 +10,23 @@ import UIKit
 
 class YYAuthorizeViewController: UIViewController {
     
+    override func loadView() {
+        // 2.添加UIWebview
+    }
+    
+    
     override func viewDidLoad() {
         // 设置标题
         self.title = "新浪微博"
         // 添加导航栏右边按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelBtnClick")
+        
+        view.backgroundColor = UIColor.orangeColor()
+        
+        
+        // 3.加载网页
+        
+        
     }
     
     // 取消按钮
@@ -24,8 +36,29 @@ class YYAuthorizeViewController: UIViewController {
         }
     }
     
+    
+    // 1.懒加载webView
+    
+    
+    
+    
     deinit {
         print("登录页面挂了")
     }
     
 }
+
+
+// MARK: - 扩展
+extension YYAuthorizeViewController: UIWebViewDelegate {
+    
+}
+
+
+
+
+
+
+
+
+

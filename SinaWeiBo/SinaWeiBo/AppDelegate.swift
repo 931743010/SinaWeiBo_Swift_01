@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 启动界面休眠0.5秒
         NSThread.sleepForTimeInterval(0.5)
         
-        // 设置全局导航栏按钮文字的颜色
-        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+        setupAppearance()
         
         // 创建Window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -38,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    func setupAppearance() {
+        // 设置全局导航栏按钮文字的颜色
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
     }
 }
 

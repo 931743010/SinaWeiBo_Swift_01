@@ -10,4 +10,5 @@ import UIKit
 
 class YYNetworkTools: NSObject {
 
+    // 创建单例网络隔离框架
 }

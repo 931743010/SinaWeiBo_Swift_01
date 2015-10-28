@@ -31,9 +31,11 @@ class YYBaseViewController: UITableViewController {
         if self is YYHomeViewController {
             
             visitorView?.startRotationAnimation()
-            // 使用通知监听应用 进入后台 / 进入前台 的状态
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+            
+            // 使用通知监听应用 进入前台 的状态
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+            // 使用通知监听应用 进入后台 的状态
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
             
         } else if self is YYMessageViewController {
             visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,别人评论你的微博,发给你的消息,都会在这里收到通知", isHome: false)
