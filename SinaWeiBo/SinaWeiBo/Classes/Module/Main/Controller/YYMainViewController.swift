@@ -94,7 +94,7 @@ class YYMainViewController: UITabBarController {
     
     
     // 抽取代码备份
-    private func backup() {
+    private func backup_1() {
         
 //        // 添加tabBar中间的撰写按钮
 //        let newTabBar = YYMainTabBar()

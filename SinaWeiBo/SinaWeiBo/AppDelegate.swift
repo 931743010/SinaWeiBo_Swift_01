@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        print("启动: \(YYUserAccount.loadAccount())")
+        
         // 启动界面休眠0.5秒
         NSThread.sleepForTimeInterval(0.5)
         

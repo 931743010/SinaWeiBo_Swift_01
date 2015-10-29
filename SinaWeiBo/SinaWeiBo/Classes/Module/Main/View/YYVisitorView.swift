@@ -21,17 +21,16 @@ class YYVisitorView: UIView {
     weak var visitorViewDelegate: YYVisitorViewDelegate?
     
     /// 登录
-    func willLogin() {
+    func visitorViewLogin() {
         print("登录")
         visitorViewDelegate?.visitorViewWillLogin()
     }
     
     /// 注册
-    func willRegister() {
+    func visitorViewRegister() {
         print("注册")
         visitorViewDelegate?.visitorViewWillRegister()
     }
-    
     
     // MARK: - 构造方法
     override init(frame: CGRect) {
@@ -68,6 +67,28 @@ class YYVisitorView: UIView {
         animation.repeatCount = MAXFLOAT                                // 重复次数
         animation.removedOnCompletion = false                           // 切换界面回来动画不停止
         iconView.layer.addAnimation(animation, forKey: "Rotation")      // 将iconView的图层添加到动画
+    }
+    
+    /// 暂停旋转动画
+    func pauseRotationAnimation() {
+        // 记录暂停时间
+        let pauseTime = iconView.layer.convertTime(CACurrentMediaTime(), fromLayer: nil)
+        // 设置动画速度为0
+        iconView.layer.speed = 0
+        // 设置动画偏移时间
+        iconView.layer.timeOffset = pauseTime
+    }
+    
+    /// 恢复旋转动画
+    func resumeRotationAnimation() {
+        // 获取暂停时间
+        let pauseTime = iconView.layer.timeOffset
+        // 设置动画速度为1
+        iconView.layer.speed = 1
+        iconView.layer.timeOffset = 0
+        iconView.layer.beginTime = 0
+        let timeSincePause = iconView.layer.convertTime(CACurrentMediaTime(), fromLayer: nil)-pauseTime
+        iconView.layer.beginTime = timeSincePause
     }
     
     /// 布局访客视图UI
@@ -161,7 +182,7 @@ class YYVisitorView: UIView {
         button.setTitle("注册", forState: UIControlState.Normal)
         button.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
-        button.addTarget(self, action: "willRegister", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: "visitorViewRegister", forControlEvents: UIControlEvents.TouchUpInside)
         button.sizeToFit()
         return button
     }()
@@ -171,9 +192,9 @@ class YYVisitorView: UIView {
         button.setTitle("登录", forState: UIControlState.Normal)
         button.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
-        button.addTarget(self, action: "willLogin", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: "visitorViewLogin", forControlEvents: UIControlEvents.TouchUpInside)
         button.sizeToFit()
         return button
-    }()    
+    }()
 }
 

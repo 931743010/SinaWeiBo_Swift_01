@@ -25,22 +25,25 @@ class YYBaseViewController: UITableViewController {
         
         visitorView = YYVisitorView()
         view = visitorView
-        print(self)
+        // print(self)
         
         // 切换不同控制器页面的访客视图
         if self is YYHomeViewController {
             
+            // 开启旋转动画
             visitorView?.startRotationAnimation()
             
             // 使用通知监听应用 进入前台 的状态
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
-            // 使用通知监听应用 进入后台 的状态
+            // 使用通知监听应用 退到后台 的状态
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
             
         } else if self is YYMessageViewController {
             visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,别人评论你的微博,发给你的消息,都会在这里收到通知", isHome: false)
+            
         } else if self is YYDiscoverViewController {
             visitorView?.setupInfo("visitordiscover_image_message", message: "登录后,最新,最热微博尽在掌握,不再会与实事潮流擦肩而过", isHome: false)
+            
         } else if self is YYProfileViewController {
             visitorView?.setupInfo("visitordiscover_image_profile", message: "登录后,你的微博,相册,个人资料会显示在这里,展示给别人", isHome: false)
         }
@@ -58,21 +61,21 @@ class YYBaseViewController: UITableViewController {
     }
     
     // MARK: - 监听通知
-    private func didBecomeActive() {
-        // 进入前台
-        
+    func didBecomeActive() {
+        // 进入前台,恢复旋转动画
+        visitorView?.resumeRotationAnimation()
     }
     
-    private func didEnterBackground() {
-        // 进入后台
-        
+    func didEnterBackground() {
+        // 退到后台,暂停旋转动画
+        visitorView?.pauseRotationAnimation()
     }
     
 }
 
 // MARK: - 扩展(Category),实现代理方法
 extension YYBaseViewController: YYVisitorViewDelegate {
-    // 登录
+    /// 登录
     func visitorViewWillLogin() {
         
         // 创建授权登录控制器
@@ -83,7 +86,7 @@ extension YYBaseViewController: YYVisitorViewDelegate {
         }
     }
     
-    // 注册
+    /// 注册
     func visitorViewWillRegister() {
         print(__FUNCTION__)
         
