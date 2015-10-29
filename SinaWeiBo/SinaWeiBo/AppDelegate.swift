@@ -20,17 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 启动界面休眠0.5秒
         NSThread.sleepForTimeInterval(0.5)
         
+        // 设置全局导航栏皮肤
         setupAppearance()
         
         // 创建Window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         // 创建自定义tabBar控制器
-        let tabBar = YYMainViewController()
+        // let tabBar = YYMainViewController()
         
         // 设置窗口根控制器为tabBar
         // ? 前面的变量有值时才执行后面的方法,没值时则啥都不做
-        self.window?.rootViewController = tabBar
+        // self.window?.rootViewController = tabBar
+        self.window?.rootViewController = YYNewFeatureViewController()
         
         // 设置window的背景颜色
         self.window?.backgroundColor = UIColor.whiteColor()

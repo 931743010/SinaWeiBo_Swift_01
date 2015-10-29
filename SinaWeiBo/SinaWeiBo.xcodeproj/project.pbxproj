@@ -23,6 +23,7 @@
 		A2B7D2AC1BDE9695003D3486 /* YYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */; };
 		A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD47E11BDFC19A00B414E6 /* YYAuthorizeViewController.swift */; };
 		A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC16531BE137290038781E /* YYUserAccount.swift */; };
+		A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYBaseViewController.swift; sourceTree = "<group>"; };
 		A2BD47E11BDFC19A00B414E6 /* YYAuthorizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYAuthorizeViewController.swift; sourceTree = "<group>"; };
 		A2DC16531BE137290038781E /* YYUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYUserAccount.swift; sourceTree = "<group>"; };
+		A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 		A252B66B1BDE61EC00ECF5D4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */,
 				A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */,
 				A2B7D2AA1BDE9656003D3486 /* YYVisitorView.swift in Sources */,
+				A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */,
 				A252B6711BDE63C900ECF5D4 /* YYDiscoverViewController.swift in Sources */,
 				A252B66F1BDE639800ECF5D4 /* YYMessageViewController.swift in Sources */,
 				A252B6731BDE63E700ECF5D4 /* YYProfileViewController.swift in Sources */,
