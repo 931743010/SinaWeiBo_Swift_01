@@ -11,10 +11,14 @@ import UIKit
 
 class YYBaseViewController: UITableViewController {
     
-    let userLogin = false
-    // 定义访客视图(可选类型)
+    
+    /// 判断用户是否登录
+    let userLogin = YYUserAccount.userLogin()
+    
+    /// 定义访客视图(可选类型)
     var visitorView: YYVisitorView?
     
+    // 重写loadView,并给view设置值,将不再会从xib/storyboard加载view
     override func loadView() {
         // 判断用户是否登录,如果登录,显示主界面,反之显示访客视图
         userLogin ? super.loadView() : setupVisitorView()

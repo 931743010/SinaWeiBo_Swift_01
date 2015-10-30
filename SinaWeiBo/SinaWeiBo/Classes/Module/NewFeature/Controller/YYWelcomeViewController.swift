@@ -19,8 +19,9 @@ class YYWelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         prepareUI()
-        // 获取用户头像
+        // 获取用户头像(可选绑定)
         if let iconString = YYUserAccount.loadAccount()?.avatar_large {
+            // 网络请求加载头像
             userIconView.sd_setImageWithURL(NSURL(string: iconString), placeholderImage: UIImage(named: "avatar_default_big"))
         }
     }
@@ -28,14 +29,22 @@ class YYWelcomeViewController: UIViewController {
     /// 头像弹跳动画效果
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        // 开始动画,更改头像的底部约束
         userIconBottomCons?.constant = -(UIScreen.mainScreen().bounds.height - 200)
         UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: 0.45, initialSpringVelocity: 5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            // 重新布局View
             self.view.layoutIfNeeded()
             }) { (_) -> Void in
+                // 嵌套动画
                 UIView.animateWithDuration(1, animations: { () -> Void in
+                    // 显示标签
                     self.welcomeLabel.alpha = 1
                     }, completion: { (_) -> Void in
-                        // 跳转到主界面
+                        // 延时1秒执行
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                            // 切换控制器,跳转到主界面
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).switchRootViewController(true)
+                        })
                 })
         }
     }
@@ -83,7 +92,7 @@ class YYWelcomeViewController: UIViewController {
     /// 欢迎回来标签
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
-        // let name = YYUserAccount.loadAccount()?.name
+        // let userName = YYUserAccount.loadAccount()?.name
         label.text = "Hello! 欢迎回来"
         label.textColor = UIColor.darkGrayColor()
         label.alpha = 0

@@ -4,10 +4,12 @@
 //
 //  Created by Arvin on 15/10/29.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 新版本特性界面
 
 import UIKit
 
+/// 重用标识符
 private let reuseIdentifier = "Cell"
 
 class YYNewFeatureViewController: UICollectionViewController {
@@ -105,7 +107,7 @@ class YYNewFeaetureCall: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 立即体验按钮动画效果
+    // MARK: - 立即体验按钮动画效果
     private func startButtonAnimation() {
         startButton.hidden = false
         // 设置按钮的 transform 缩放比例: 0,0
@@ -117,7 +119,7 @@ class YYNewFeaetureCall: UICollectionViewCell {
         }
     }
     
-    /// 准备 UI
+    // MARK: - 准备 UI
     private func prepareUI() {
         // 添加子控件到 contentView
         contentView.addSubview(backgroundImageView)
@@ -135,9 +137,11 @@ class YYNewFeaetureCall: UICollectionViewCell {
         
     }
     
-    /// 按钮点击事件
+    // MARK: - 按钮点击事件
     func startButtonClick() {
         print(__FUNCTION__)
+        // 切换控制器,跳转到主界面
+        (UIApplication.sharedApplication().delegate as! AppDelegate).switchRootViewController(false)
     }
     
     // MARK: - 懒加载背景图/体验按钮
@@ -156,5 +160,4 @@ class YYNewFeaetureCall: UICollectionViewCell {
         button.addTarget(self, action: "startButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
         return button
     }()
-    
 }

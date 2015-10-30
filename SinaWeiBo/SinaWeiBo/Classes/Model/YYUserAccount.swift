@@ -10,8 +10,14 @@ import UIKit
 
 class YYUserAccount: NSObject,NSCoding {
     
-    /// 接口获取授权后的access token
-    var access_token: String?
+    /// 类方法,判断用户是否登录
+    /// 判断内存中有没有帐号,有就返回true
+    class func userLogin() -> Bool {
+        return YYUserAccount.loadAccount() != nil
+    }
+        
+    /// 友好显示名称
+    var name: String?
     
     /// 当前授权用户的UID
     var uid: String?
@@ -19,22 +25,23 @@ class YYUserAccount: NSObject,NSCoding {
     /// 将expires_in 转换成日期
     var expires_date: NSDate?
     
-    /// 友好显示名称
-    var name: String?
+    /// 接口获取授权后的access token
+    var access_token: String?
     
     /// 用户头像地址（大图),180×180像素
     var avatar_large: String?
+    
+    /// 用户帐号(Static),需被多处访问
+    private static var userAccount: YYUserAccount?
     
     // 基本数据类型不能定义为可选
     /// access_token的生命周期，单位是秒数
     var expires_in: NSTimeInterval = 0 {
         didSet {
+            // 属性监视器
             expires_date = NSDate(timeIntervalSinceNow: expires_in)
         }
     }
-    
-    /// 定义userAccount变量(Static),需多处访问
-    private static var userAccount: YYUserAccount?
     
     /// KVC 字典转模型
     init(dict: [String : AnyObject]) {
@@ -53,12 +60,12 @@ class YYUserAccount: NSObject,NSCoding {
     }
     
     // MARK: -加载用户数据
-    // 调用网络工具类加载用户数据
+    /// 调用网络工具类加载用户数据
     func loadUserInfo(finished: (error: NSError?) -> ()) {
         // 判断网络请求结果返回的数据
         YYNetworkTools.sharedInstance.loadUserInfo { (result, error) -> () in
             if error != nil || result == nil {
-                // 执行闭包
+                // 执行闭包(有错误)
                 finished(error: error)
                 return
             }
@@ -66,12 +73,12 @@ class YYUserAccount: NSObject,NSCoding {
             self.name = result!["name"] as? String
             self.avatar_large = result!["avatar_large"] as? String
             
-            // 保存到沙盒
+            // 保存数据到沙盒
             self.saveAccount()
             
-            // 同步数据到内存
+            // 同步数据到内存,把当前对象赋值给 userAccount
             YYUserAccount.userAccount = self
-            // 执行闭包
+            // 执行闭包(没错误)
             finished(error: nil)
         }
     }
@@ -99,13 +106,13 @@ class YYUserAccount: NSObject,NSCoding {
         // 如果有帐号,还需判断是否已过期
         // OrderedAscending (<)  OrderedSame (=)  OrderedDescending (>)
         if userAccount != nil && userAccount?.expires_date?.compare(NSDate()) == NSComparisonResult.OrderedDescending {
-            print("内存中有帐号,没有过期")
+           // print("内存中有帐号,没有过期")
             return userAccount
         }
         return nil
     }
     
-    // MARK: - 归档/解档
+    // MARK: - 归档用户数据
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(access_token, forKey: "access_token")
         aCoder.encodeDouble(expires_in, forKey: "expires_in")
@@ -114,7 +121,7 @@ class YYUserAccount: NSObject,NSCoding {
         aCoder.encodeObject(name, forKey: "name")
         aCoder.encodeObject(avatar_large, forKey: "avatar_large")
     }
-    
+    // MARK: - 解档用户数据
     required init?(coder aDecoder: NSCoder) {
         access_token = aDecoder.decodeObjectForKey("access_token") as? String
         expires_in = aDecoder.decodeDoubleForKey("expires_in")

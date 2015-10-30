@@ -108,6 +108,7 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
     // MARK: -
     /// 调用网络工具类加载access token
     func loadAccessToken(code: String) {
+        
         YYNetworkTools.sharedInstance.loadAccessToken(code) { (result, error) -> () in
             // 如果网络加载返回的结果为空或者错误
             if error != nil || result == nil {
@@ -123,7 +124,7 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
             
             /// 加载用户信息
             account.loadUserInfo({ (error) -> () in
-                // 网络请求错误,提示错误
+                // 网络请求错误
                 if error != nil {
                     self.showError("😰获取用户信息失败")
                     return
@@ -131,6 +132,8 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
                 print("account: \(account)")
                 // 网络请求成功
                 self.cancelBtnClick()
+                // 切换根控制器
+                (UIApplication.sharedApplication().delegate as! AppDelegate).switchRootViewController(false)
             })
         }
     }

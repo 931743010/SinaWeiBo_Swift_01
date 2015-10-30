@@ -18,6 +18,7 @@
 		A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */; };
 		A29D34811BE1FBAF008E3E44 /* YYWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */; };
 		A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */; };
+		A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */; };
 		A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2A51BDE958B003D3486 /* YYMainTabBar.swift */; };
 		A2B7D2AA1BDE9656003D3486 /* YYVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2A91BDE9656003D3486 /* YYVisitorView.swift */; };
 		A2B7D2AC1BDE9695003D3486 /* YYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */; };
@@ -42,6 +43,7 @@
 		A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNetworkTools.swift; sourceTree = "<group>"; };
 		A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYWelcomeViewController.swift; sourceTree = "<group>"; };
 		A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNewFeatureViewController.swift; sourceTree = "<group>"; };
+		A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		A2B7D2A51BDE958B003D3486 /* YYMainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYMainTabBar.swift; sourceTree = "<group>"; };
 		A2B7D2A91BDE9656003D3486 /* YYVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYVisitorView.swift; sourceTree = "<group>"; };
 		A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYBaseViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */,
+				A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */,
 				A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */,
 				A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */,
 				A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */,
