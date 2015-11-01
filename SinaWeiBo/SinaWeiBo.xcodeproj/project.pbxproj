@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37DCA41ADDA4D10682A44B0C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46626C9CB1C18B0D3A122906 /* Pods.framework */; };
+		A24EE5F01BE495F70035F04F /* YYHomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */; };
 		A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6401BDE5A1F00ECF5D4 /* AppDelegate.swift */; };
 		A252B6481BDE5A1F00ECF5D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A252B6471BDE5A1F00ECF5D4 /* Assets.xcassets */; };
 		A252B66D1BDE635700ECF5D4 /* YYHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B66C1BDE635700ECF5D4 /* YYHomeViewController.swift */; };
@@ -15,6 +16,11 @@
 		A252B6711BDE63C900ECF5D4 /* YYDiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6701BDE63C900ECF5D4 /* YYDiscoverViewController.swift */; };
 		A252B6731BDE63E700ECF5D4 /* YYProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6721BDE63E700ECF5D4 /* YYProfileViewController.swift */; };
 		A252B6751BDE648100ECF5D4 /* YYMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6741BDE648100ECF5D4 /* YYMainViewController.swift */; };
+		A255BD291BE62B4B0067D62B /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255BD281BE62B4B0067D62B /* UIScreen+Extension.swift */; };
+		A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */; };
+		A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641651BE51DBF00CF6727 /* YYStatusCell.swift */; };
+		A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641671BE51E4900CF6727 /* YYStatusTopView.swift */; };
+		A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641691BE521B600CF6727 /* UILabel+Extension.swift */; };
 		A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */; };
 		A29D34811BE1FBAF008E3E44 /* YYWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */; };
 		A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */; };
@@ -24,6 +30,9 @@
 		A2B7D2AC1BDE9695003D3486 /* YYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */; };
 		A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD47E11BDFC19A00B414E6 /* YYAuthorizeViewController.swift */; };
 		A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC16531BE137290038781E /* YYUserAccount.swift */; };
+		A2DEF15F1BE4F34800BCA9BA /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */; };
+		A2DEF1631BE4FA9A00BCA9BA /* YYStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */; };
+		A2DEF1651BE4FACC00BCA9BA /* YYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF1641BE4FACC00BCA9BA /* YYUser.swift */; };
 		A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +40,7 @@
 		46626C9CB1C18B0D3A122906 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9A528CC5F23DB904463BD6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9F89B815AE5A9A70C8AB9E5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYHomeTitleView.swift; sourceTree = "<group>"; };
 		A252B63D1BDE5A1F00ECF5D4 /* SinaWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinaWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A252B6401BDE5A1F00ECF5D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A252B6471BDE5A1F00ECF5D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +50,11 @@
 		A252B6701BDE63C900ECF5D4 /* YYDiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYDiscoverViewController.swift; sourceTree = "<group>"; };
 		A252B6721BDE63E700ECF5D4 /* YYProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYProfileViewController.swift; sourceTree = "<group>"; };
 		A252B6741BDE648100ECF5D4 /* YYMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYMainViewController.swift; sourceTree = "<group>"; };
+		A255BD281BE62B4B0067D62B /* UIScreen+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		A26641651BE51DBF00CF6727 /* YYStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusCell.swift; sourceTree = "<group>"; };
+		A26641671BE51E4900CF6727 /* YYStatusTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusTopView.swift; sourceTree = "<group>"; };
+		A26641691BE521B600CF6727 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNetworkTools.swift; sourceTree = "<group>"; };
 		A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYWelcomeViewController.swift; sourceTree = "<group>"; };
 		A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNewFeatureViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +64,9 @@
 		A2B7D2AB1BDE9695003D3486 /* YYBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYBaseViewController.swift; sourceTree = "<group>"; };
 		A2BD47E11BDFC19A00B414E6 /* YYAuthorizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYAuthorizeViewController.swift; sourceTree = "<group>"; };
 		A2DC16531BE137290038781E /* YYUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYUserAccount.swift; sourceTree = "<group>"; };
+		A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatus.swift; sourceTree = "<group>"; };
+		A2DEF1641BE4FACC00BCA9BA /* YYUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYUser.swift; sourceTree = "<group>"; };
 		A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +134,7 @@
 		A252B6531BDE5B3D00ECF5D4 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -124,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				A2DC16531BE137290038781E /* YYUserAccount.swift */,
+				A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */,
+				A2DEF1641BE4FACC00BCA9BA /* YYUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +223,8 @@
 		A252B65D1BDE5B3D00ECF5D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2DEF1661BE50FA800BCA9BA /* Cell */,
+				A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +341,9 @@
 			children = (
 				A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */,
 				A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */,
+				A26641691BE521B600CF6727 /* UILabel+Extension.swift */,
+				A255BD281BE62B4B0067D62B /* UIScreen+Extension.swift */,
+				A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -385,6 +411,15 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A2DEF1661BE50FA800BCA9BA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A26641651BE51DBF00CF6727 /* YYStatusCell.swift */,
+				A26641671BE51E4900CF6727 /* YYStatusTopView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CC4646C59B67442312FAEC86 /* Pods */ = {
@@ -517,20 +552,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */,
+				A2DEF15F1BE4F34800BCA9BA /* UIView+AutoLayout.swift in Sources */,
 				A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */,
+				A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */,
 				A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */,
 				A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */,
 				A29D34811BE1FBAF008E3E44 /* YYWelcomeViewController.swift in Sources */,
 				A2B7D2AC1BDE9695003D3486 /* YYBaseViewController.swift in Sources */,
 				A252B6751BDE648100ECF5D4 /* YYMainViewController.swift in Sources */,
 				A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */,
+				A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */,
+				A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */,
 				A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */,
 				A2B7D2AA1BDE9656003D3486 /* YYVisitorView.swift in Sources */,
 				A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */,
+				A2DEF1631BE4FA9A00BCA9BA /* YYStatus.swift in Sources */,
 				A252B6711BDE63C900ECF5D4 /* YYDiscoverViewController.swift in Sources */,
 				A252B66F1BDE639800ECF5D4 /* YYMessageViewController.swift in Sources */,
+				A255BD291BE62B4B0067D62B /* UIScreen+Extension.swift in Sources */,
+				A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */,
 				A252B6731BDE63E700ECF5D4 /* YYProfileViewController.swift in Sources */,
+				A2DEF1651BE4FACC00BCA9BA /* YYUser.swift in Sources */,
 				A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */,
+				A24EE5F01BE495F70035F04F /* YYHomeTitleView.swift in Sources */,
 				A252B66D1BDE635700ECF5D4 /* YYHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

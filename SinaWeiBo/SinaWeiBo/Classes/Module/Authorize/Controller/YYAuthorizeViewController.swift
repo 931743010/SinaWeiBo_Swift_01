@@ -10,8 +10,9 @@ import UIKit
 import SVProgressHUD
 
 class YYAuthorizeViewController: UIViewController {
-    
+    ///
     // 1.添加UIWebview
+    ///
     override func loadView() {
         view = webView
         webView.delegate = self
@@ -27,8 +28,9 @@ class YYAuthorizeViewController: UIViewController {
         let request = NSURLRequest(URL: YYNetworkTools.sharedInstance.oauthURL())
         webView.loadRequest(request)
     }
-    
+    ///
     /// 取消按钮
+    ///
     func cancelBtnClick() {
         // 隐藏加载进度指示器
         SVProgressHUD.dismiss()
@@ -42,8 +44,9 @@ class YYAuthorizeViewController: UIViewController {
     private lazy var webView = UIWebView()
 }
 
-
+///
 // MARK: - 扩展(Catgoty) UIWebViewDelegate 代理方法
+///
 extension YYAuthorizeViewController: UIWebViewDelegate {
     
     /// 开始加载请求时触发
@@ -105,6 +108,7 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
         }
         return false
     }
+    
     // MARK: -
     /// 调用网络工具类加载access token
     func loadAccessToken(code: String) {
@@ -137,8 +141,9 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
             })
         }
     }
-    
+    ///
     /// 显示错误信息提示
+    ///
     private func showError(message: String) {
         // 提示错误信息
         SVProgressHUD.showErrorWithStatus(message, maskType: SVProgressHUDMaskType.Gradient)

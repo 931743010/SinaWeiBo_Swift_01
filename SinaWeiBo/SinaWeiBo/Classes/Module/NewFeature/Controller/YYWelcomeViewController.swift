@@ -11,8 +11,9 @@ import UIKit
 import SDWebImage
 
 class YYWelcomeViewController: UIViewController {
-    
-    // 用户头像底部约束
+    ///
+    /// 用户头像底部约束
+    ///
     private var userIconBottomCons: NSLayoutConstraint?
     
     override func viewDidLoad() {
@@ -22,11 +23,13 @@ class YYWelcomeViewController: UIViewController {
         // 获取用户头像(可选绑定)
         if let iconString = YYUserAccount.loadAccount()?.avatar_large {
             // 网络请求加载头像
-            userIconView.sd_setImageWithURL(NSURL(string: iconString), placeholderImage: UIImage(named: "avatar_default_big"))
+            userIconView.yy_setImageWithURL(NSURL(string: iconString), placeholderImage: UIImage(named: "avatar_default_big"))
         }
     }
     
+    ///
     /// 头像弹跳动画效果
+    ///
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // 开始动画,更改头像的底部约束
@@ -48,7 +51,9 @@ class YYWelcomeViewController: UIViewController {
                 })
         }
     }
+    ///
     /// 准备UI
+    ///
     private func prepareUI() {
         
         // 添加子控件
@@ -75,12 +80,16 @@ class YYWelcomeViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: welcomeLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: userIconView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 16))
     }
     
+    ///
     /// 背景图片
+    ///
     private lazy var backgroundImageView: UIImageView = {
         return UIImageView(image: UIImage(named: "ad_background"))
     }()
     
+    ///
     /// 用户头像
+    ///
     private lazy var userIconView: UIImageView = {
         let userIconView = UIImageView(image: UIImage(named: "avatar_default_big"))
         userIconView.layer.cornerRadius = 42.5
@@ -89,11 +98,13 @@ class YYWelcomeViewController: UIViewController {
         return userIconView
     }()
     
+    ///
     /// 欢迎回来标签
+    ///
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
-        // let userName = YYUserAccount.loadAccount()?.name
-        label.text = "Hello! 欢迎回来"
+        let userName = YYUserAccount.loadAccount()?.name ?? "Hello"
+        label.text = "\(userName)! 欢迎回来"
         label.textColor = UIColor.darkGrayColor()
         label.alpha = 0
         label.sizeToFit()

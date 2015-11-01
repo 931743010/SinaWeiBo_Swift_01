@@ -19,7 +19,9 @@ class YYNewFeatureViewController: UICollectionViewController {
     /// 流水布局
     private var layout = UICollectionViewFlowLayout()
     
+    ///
     /// 重写 init()
+    ///
     init() {
         super.init(collectionViewLayout: layout)
     }
@@ -27,7 +29,9 @@ class YYNewFeatureViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    ///
     /// viewDidLoad方法
+    ///
     override func viewDidLoad() {
         super.viewDidLoad()
         // 注册 CollectionView
@@ -36,7 +40,9 @@ class YYNewFeatureViewController: UICollectionViewController {
         prepareLayout()
     }
     
+    ///
     // MARK: - 设置layout的参数
+    ///
     private func prepareLayout() {
         // 设置item的大小
         layout.itemSize = UIScreen.mainScreen().bounds.size
@@ -50,7 +56,9 @@ class YYNewFeatureViewController: UICollectionViewController {
         collectionView?.bounces = false
     }
     
+    ///
     // MARK: - CollectionView的数据源方法
+    ///
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemCount
     }
@@ -65,7 +73,9 @@ class YYNewFeatureViewController: UICollectionViewController {
         return cell
     }
     
-    // CollectionView的分页滚动完毕后,cell看不到时会触发
+    ///
+    /// CollectionView的分页滚动完毕后,cell看不到时会触发
+    ///
     override func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         
         // 正在显示的cell的indexPath
@@ -97,7 +107,9 @@ class YYNewFeaetureCall: UICollectionViewCell {
         }
     }
     
+    ///
     // MARK: - 重写构造方法
+    ///
     override init(frame: CGRect) {
         super.init(frame: frame)
         // 准备 UI
@@ -107,7 +119,9 @@ class YYNewFeaetureCall: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    ///
     // MARK: - 立即体验按钮动画效果
+    ///
     private func startButtonAnimation() {
         startButton.hidden = false
         // 设置按钮的 transform 缩放比例: 0,0
@@ -119,7 +133,9 @@ class YYNewFeaetureCall: UICollectionViewCell {
         }
     }
     
+    ///
     // MARK: - 准备 UI
+    ///
     private func prepareUI() {
         // 添加子控件到 contentView
         contentView.addSubview(backgroundImageView)
@@ -137,17 +153,23 @@ class YYNewFeaetureCall: UICollectionViewCell {
         
     }
     
+    ///
     // MARK: - 按钮点击事件
+    ///
     func startButtonClick() {
         print(__FUNCTION__)
         // 切换控制器,跳转到主界面
         (UIApplication.sharedApplication().delegate as! AppDelegate).switchRootViewController(false)
     }
     
+    ///
     // MARK: - 懒加载背景图/体验按钮
+    ///
     private lazy var backgroundImageView: UIImageView = UIImageView()
     
+    ///
     /// 立即体验按钮
+    ///
     private lazy var startButton: UIButton = {
         
         let button = UIButton()

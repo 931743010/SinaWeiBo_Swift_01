@@ -9,6 +9,35 @@
 import UIKit
 import AFNetworking
 
+///
+// MARK: - 定义网络错误枚举
+///
+enum YYNetworkError: Int {
+    case emptyToken = -1
+    case emptyUid = -2
+    
+    // 枚举中可以定义属性
+    var description: String {
+        get {
+            // 根据枚举的类型返回对应的错误
+            switch self {
+            case YYNetworkError.emptyToken:
+                return "Access Token 为空"
+            case YYNetworkError.emptyUid:
+                return "Uid 为空"
+            }
+        }
+    }
+    // 枚举中可以定义方法
+    func error() -> NSError {
+        /// 由于错误code分散不好管理,所以自定义error方法
+        /// domain:    错误范围(自定义)
+        /// code:      错误代码,负数开头(自定义)
+        /// userInfo:  发生错误的附加信息
+        return NSError(domain: "cn.Arvin.error.network", code: rawValue, userInfo: ["errorDescription" : description])
+    }
+}
+
 class YYNetworkTools: NSObject {
     
     /// 使用 typealias 定义闭包别名
@@ -39,7 +68,9 @@ class YYNetworkTools: NSObject {
     /// 申请应用时分配的AppSecret
     private let client_secret = "676bba11e69e66a008d20a6465d8cc68"
     
-    /// Oauth授权回调地址
+    ///
+    // MARK: - Oauth授权回调地址
+    ///
     func oauthURL() -> NSURL {
         // 拼接回调地址
         let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(client_id)&redirect_uri=\(redirect_uri)"
@@ -47,7 +78,10 @@ class YYNetworkTools: NSObject {
         return NSURL(string: urlString)!
     }
     
-    /// 加载网络请求
+    
+    ///
+    // MARK: - 加载请求 AccessToken
+    ///
     func loadAccessToken(code: String,finished: NetworkFinishedCallback) {
         // oauth2 授权URL
         let urlString = "oauth2/access_token"
@@ -66,31 +100,113 @@ class YYNetworkTools: NSObject {
         POST_Request(urlString, parameters: parameters, finished: finished)
     }
     
-    /// 加载用户信息
+    
+    ///
+    // MARK: - 加载用户信息
+    ///
     func loadUserInfo(finished: NetworkFinishedCallback) {
+        
+        ///
+        /// 判断access_token是否为空
+        ///
+        
+        /* 可选绑定,有值才进来
+        if let parameters = tokenDict() {
+            // 变量 parameters 只能在此代码块中能使用
+            print("parameters:\(parameters) 有值..")
+        }
+        
         // 判断access_token是否为空
-        if YYUserAccount.loadAccount()?.access_token == nil {
+        if tokenDict() == nil {
+        // 获取枚举对应的值,调用自定义的错误方法
+        let error = YYNetworkError.emptyToken.error()
+        // 提示调用者错误信息
+        finished(result: nil, error: error)
+        return
+        }*/
+        
+        // 守卫,与可选绑定相反,没值才进来
+        // 变量 parameters 能在定义后的所有代码块中使用
+        guard var parameters = tokenDict() else {
+            
+            // 获取枚举对应的值,调用自定义的错误方法
+            let error = YYNetworkError.emptyToken.error()
+            // 提示调用者错误信息
+            finished(result: nil, error: error)
             return
         }
-        // 判断uid是否为空
+        
+        ///
+        /// 判断uid是否为空
+        ///
         if YYUserAccount.loadAccount()?.uid == nil {
+            // 获取枚举对应的值,调用自定义的错误方法
+            let error = YYNetworkError.emptyUid.error()
+            // 提示调用者错误信息
+            finished(result: nil, error: error)
             return
         }
+        
         // 用户接口url
         let urlString = "2/users/show.json"
-        
         // parameters参数
+        parameters["uid"] = YYUserAccount.loadAccount()?.uid!
+        
+        /*
         let parameters = [
             "uid" : YYUserAccount.loadAccount()!.uid!,
             "access_token" : YYUserAccount.loadAccount()!.access_token!,
-        ]
+        ]*/
         
         // 使用AFNetworking发送GET网络请求
         // 给服务器发送的请求数据不能为空,需强制拆包
         GET_Request(urlString, parameters: parameters, finished: finished)
     }
     
-    /// 封装 AFNetworking 的 GET 请求方法
+    ///
+    /// 判断Access Token是否有值,有值返回字典;没值则返回nil
+    ///
+    func tokenDict() -> [String : AnyObject]? {
+        if YYUserAccount.loadAccount()?.access_token == nil {
+            return nil
+        }
+        return ["access_token" : YYUserAccount.loadAccount()!.access_token!]
+    }
+    
+    ///
+    // MARK: - 加载微博数据
+    ///
+    func loadStatus(finished: NetworkFinishedCallback) {
+        /*
+        if let accessToken = YYUserAccount.loadAccount()?.access_token {
+            // print("\(accessToken)有值")
+            // 微博数据接口
+            let urlString = "2/statuses/home_timeline.json"
+            
+            // 接口参数:access_token
+            let parameters = ["access_token" : accessToken]
+            
+            // 使用AFNetworking发送GET网络请求
+            GET_Request(urlString, parameters: parameters, finished: finished)
+        }*/
+        
+        guard let parameters = tokenDict() else {
+            // access_token 没有值
+            finished(result: nil, error: YYNetworkError.emptyToken.error())
+            return
+        }
+        // 微博数据接口
+        let urlString = "2/statuses/home_timeline.json"
+        
+        // 使用AFNetworking发送GET网络请求
+        GET_Request(urlString, parameters: parameters, finished: finished)
+        
+    }
+    
+    
+    ///
+    // MARK: - 封装 AFNetworking 的 GET 请求方法
+    ///
     func GET_Request(URLString: String, parameters: AnyObject?, finished: NetworkFinishedCallback) {
         afnManager.GET(URLString, parameters: parameters, success: { (_, request) -> Void in
             
@@ -101,7 +217,10 @@ class YYNetworkTools: NSObject {
                 finished(result: nil, error: error)
         }
     }
-    /// 封装 AFNetworking 的 POST 请求方法
+    
+    ///
+    // MARK: - 封装 AFNetworking 的 POST 请求方法
+    ///
     func POST_Request(URLString: String, parameters: AnyObject?, finished: NetworkFinishedCallback) {
         afnManager.POST(URLString, parameters: parameters, success: { (_, request) -> Void in
             
@@ -113,7 +232,9 @@ class YYNetworkTools: NSObject {
         }
     }
     
-    // 抽取代码备份
+    ///
+    /// 抽取代码备份
+    ///
     private func backup_2() {
         /*
         // 网络隔离框架单例

@@ -54,7 +54,7 @@ class YYUserAccount: NSObject,NSCoding {
     /// 当字典里的key在模型里没有对应的属性时,空实现这个方法则不会崩溃
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
     
-    /// 重写description, Print属性
+    /// 重写description, Print对象
     override var description: String {
         return "access_token: \(access_token),expires_in: \(expires_in),uid: \(uid),expires_date: \(expires_date),name: \(name), avatar_large: \(avatar_large)"
     }

@@ -64,6 +64,11 @@ class YYBaseViewController: UITableViewController {
         
     }
     
+    deinit {
+        // 移除通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     // MARK: - 监听通知
     func didBecomeActive() {
         // 进入前台,恢复旋转动画
