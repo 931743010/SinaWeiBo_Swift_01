@@ -4,7 +4,8 @@
 //
 //  Created by Arvin on 15/10/29.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 用户授权
 
 import UIKit
 

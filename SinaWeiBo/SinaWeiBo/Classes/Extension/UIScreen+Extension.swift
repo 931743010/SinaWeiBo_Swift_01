@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+///
+/// 扩展 UIScreen
+///
 extension UIScreen {
     
     /// 返回屏幕宽度

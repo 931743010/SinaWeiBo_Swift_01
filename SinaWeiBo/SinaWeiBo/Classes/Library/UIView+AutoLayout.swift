@@ -20,6 +20,7 @@ import UIKit
 ///  - CenterLeft:   左中
 ///  - CenterRight:  右中
 ///  - CenterCenter: 中中
+
 public enum ff_AlignType {
     case TopLeft
     case TopRight

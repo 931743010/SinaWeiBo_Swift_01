@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+///
+/// 扩展 UIImageView
+///
 extension UIImageView {
     
     /// SDWebImage 隔离 sd_setImageWithURL:

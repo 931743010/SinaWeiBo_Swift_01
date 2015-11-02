@@ -4,7 +4,8 @@
 //
 //  Created by Arvin on 15/10/28.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 网络请求工具类
 
 import UIKit
 import AFNetworking
@@ -190,11 +191,13 @@ class YYNetworkTools: NSObject {
             GET_Request(urlString, parameters: parameters, finished: finished)
         }*/
         
+        // 守卫,与可选绑定相反,没值才进来
         guard let parameters = tokenDict() else {
             // access_token 没有值
             finished(result: nil, error: YYNetworkError.emptyToken.error())
             return
         }
+        
         // 微博数据接口
         let urlString = "2/statuses/home_timeline.json"
         

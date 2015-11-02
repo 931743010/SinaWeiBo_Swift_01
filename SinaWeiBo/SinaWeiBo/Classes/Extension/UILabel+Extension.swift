@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+///
+/// 扩展 UILabel
+///
 extension UILabel {
     /// 便利构造函数
     convenience init(fontSize: CGFloat,textColor: UIColor) {

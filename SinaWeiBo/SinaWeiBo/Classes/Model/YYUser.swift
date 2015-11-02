@@ -4,7 +4,8 @@
 //
 //  Created by Arvin on 15/10/31.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 微博用户模型
 
 import UIKit
 

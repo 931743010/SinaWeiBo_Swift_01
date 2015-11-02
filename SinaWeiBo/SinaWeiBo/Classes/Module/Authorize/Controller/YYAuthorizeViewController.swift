@@ -4,30 +4,33 @@
 //
 //  Created by Arvin on 15/10/27.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 微博授权登录控制器
 
 import UIKit
 import SVProgressHUD
 
 class YYAuthorizeViewController: UIViewController {
     ///
-    // 1.添加UIWebview
+    /// 1.添加UIWebview
     ///
     override func loadView() {
         view = webView
+        // 指定代理
         webView.delegate = self
     }
     
     override func viewDidLoad() {
-        // 设置标题
+        // 设置导航栏标题
         self.title = "新浪微博"
         // 添加导航栏右边按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelBtnClick")
         
-        // 2.加载网页
+        // 2.加载网页请求
         let request = NSURLRequest(URL: YYNetworkTools.sharedInstance.oauthURL())
         webView.loadRequest(request)
     }
+    
     ///
     /// 取消按钮
     ///
@@ -43,6 +46,7 @@ class YYAuthorizeViewController: UIViewController {
     // MARK: - 懒加载webView
     private lazy var webView = UIWebView()
 }
+
 
 ///
 // MARK: - 扩展(Catgoty) UIWebViewDelegate 代理方法
@@ -103,13 +107,13 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
                 loadAccessToken(code)
                 
             } else { // 取消授权
-                
+                self.cancelBtnClick()
             }
         }
         return false
     }
     
-    // MARK: -
+    //  MARK: - loadAccessToken
     /// 调用网络工具类加载access token
     func loadAccessToken(code: String) {
         
@@ -141,8 +145,9 @@ extension YYAuthorizeViewController: UIWebViewDelegate {
             })
         }
     }
+    
     ///
-    /// 显示错误信息提示
+    //  MARK: - showError
     ///
     private func showError(message: String) {
         // 提示错误信息

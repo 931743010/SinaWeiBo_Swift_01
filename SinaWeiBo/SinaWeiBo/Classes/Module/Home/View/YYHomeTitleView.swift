@@ -4,7 +4,8 @@
 //
 //  Created by Arvin on 15/10/31.
 //  Copyright © 2015年 Arvin. All rights reserved.
-//
+
+// 导航栏中间标题按钮
 
 import UIKit
 

@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+///
+/// 扩展 UIBarButtonItem
+///
 extension UIBarButtonItem {
     ///
     /// 在扩展中只能是便利构造方法(代替下面方法)

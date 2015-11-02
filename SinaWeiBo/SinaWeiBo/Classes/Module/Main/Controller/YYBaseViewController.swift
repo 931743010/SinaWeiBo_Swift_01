@@ -5,7 +5,7 @@
 //  Created by Arvin on 15/10/27.
 //  Copyright © 2015年 Arvin. All rights reserved.
 
-//
+// 访客视图基础类控制器
 
 import UIKit
 
