@@ -50,6 +50,8 @@ class YYNewFeatureViewController: UICollectionViewController {
         layout.minimumLineSpacing = 0
         // 滚动方向(水平)
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        // 去除水平滚动条
+        collectionView?.showsHorizontalScrollIndicator = false
         // 设置分页
         collectionView?.pagingEnabled = true
         // 取消弹簧效果

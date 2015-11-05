@@ -58,10 +58,12 @@ class YYUser: NSObject {
     /// 当字典里的key在模型里没有对应的属性时,空实现这个方法则不会崩溃
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
     
-    
+    ///
     /// 重写description, Print对象
+    /*
     override var description: String {
-        let keys = ["idstr", "name", "profile_image_url", "verified_type", "mbrank"]
-        return "\n\t用户模型:\(dictionaryWithValuesForKeys(keys))"
+    let keys = ["idstr", "name", "profile_image_url", "verified_type", "mbrank"]
+    return "\n\t用户模型:\(dictionaryWithValuesForKeys(keys))"
     }
+    */
 }

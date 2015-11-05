@@ -65,8 +65,10 @@ class YYBaseViewController: UITableViewController {
     }
     
     deinit {
-        // 移除通知
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        if self is YYHomeViewController {
+            // 移除通知
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        }
     }
     
     // MARK: - 监听通知
@@ -98,7 +100,6 @@ extension YYBaseViewController: YYVisitorViewDelegate {
     /// 注册
     func visitorViewWillRegister() {
         print(__FUNCTION__)
-        
     }
 }
 

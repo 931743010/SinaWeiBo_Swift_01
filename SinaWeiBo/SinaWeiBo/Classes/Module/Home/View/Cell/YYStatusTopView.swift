@@ -18,13 +18,23 @@ class YYStatusTopView: UIView {
             // 设置用户头像
             if let iconUrl = status?.user?.profile_image_url {
                 // 网络加载头像
-                iconView.yy_setImageWithURL(NSURL(string: iconUrl))
+                //iconView.yy_setImageWithURL(NSURL(string: iconUrl))
+                iconView.yy_setImageWithURL(NSURL(string: iconUrl), placeholderImage: UIImage(named: "avatar_default_small"))
             }
             nameLabel.text = status?.user?.name                       // 用户昵称
             timeLabel.text = status?.created_at                       // 微博时间
             sourceLabel.text = "来自iphone 6s plus"                    // 微博来源
             mbrankImgView.image = status?.user?.mbrankImage           // 会员等级
             verifiedImgView.image = status?.user?.verified_typeImage  // 认证用户
+            
+            // 判断是否Vip,显示不同颜色的昵称
+            if let vip = status?.user?.mbrank {
+                if vip > 0 && vip <= 6 {
+                    nameLabel.textColor = UIColor.orangeColor()
+                } else {
+                    nameLabel.textColor = UIColor.darkGrayColor()
+                }
+            }
         }
     }
     
@@ -34,6 +44,7 @@ class YYStatusTopView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareUI()
+        //backgroundColor = UIColor.randomColor()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,6 +64,7 @@ class YYStatusTopView: UIView {
         addSubview(sourceLabel)        // 来源标签
         addSubview(mbrankImgView)      // 等级图标
         addSubview(verifiedImgView)    // 认证图标
+        addSubview(arrowButton)        // 箭头按钮
         
         // 顶部分隔视图
         topSeparateView.ff_AlignInner(type: ff_AlignType.TopLeft, referView: self, size: CGSize(width: UIScreen.width(), height: 10))
@@ -75,6 +87,9 @@ class YYStatusTopView: UIView {
         // 认证图标约束
         verifiedImgView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: iconView, size: CGSize(width: 17, height: 17), offset: CGPoint(x: 4.5, y: 4.5))
         
+        // 右边箭头按钮约束
+        arrowButton.ff_AlignVertical(type: ff_AlignType.BottomRight, referView: topSeparateView, size: CGSize(width: 30, height: 30))
+        
     }
     
     
@@ -95,7 +110,12 @@ class YYStatusTopView: UIView {
     }()
     
     /// 用户昵称
-    private lazy var nameLabel: UILabel = UILabel(fontSize: 14, textColor: UIColor.darkGrayColor())
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFontOfSize(14)
+        return label
+    }()
+    //private lazy var nameLabel: UILabel = UILabel(fontSize: 14, textColor: UIColor.darkGrayColor())
     
     /// 微博时间
     private lazy var timeLabel: UILabel = UILabel(fontSize: 9, textColor: UIColor.orangeColor())
@@ -108,6 +128,15 @@ class YYStatusTopView: UIView {
     
     /// 认证用户
     private lazy var verifiedImgView = UIImageView()
+    
+    /// 右边箭头按钮
+    private lazy var arrowButton: UIButton = {
+        let button = UIButton()
+        //button.backgroundColor = UIColor.redColor()
+        button.setImage(UIImage(named: "timeline_icon_more"), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: "timeline_icon_more_highlighted"), forState: UIControlState.Highlighted)
+        return button
+    }()
     
 }
 

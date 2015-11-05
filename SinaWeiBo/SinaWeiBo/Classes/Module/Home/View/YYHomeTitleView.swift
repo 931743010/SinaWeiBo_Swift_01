@@ -9,12 +9,23 @@
 
 import UIKit
 
-class YYHomeTitleView: UIButton {
+class YYHomeTitleViewButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
         // 改变箭头图片的位置 X 值
         titleLabel?.frame.origin.x = 0
         imageView?.frame.origin.x = (titleLabel?.frame.width)! + 5
+    }
+}
+
+
+class YYBottomViewButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        print("layoutSubviews:\(imageView!.frame)")
+//        imageView?.frame.origin.x = (titleLabel?.frame.width)! + 2
+//        imageView!.frame.origin.x = 0
+//        titleLabel?.frame.origin.x = imageView!.frame.width + 20
     }
 }

@@ -39,14 +39,16 @@ class YYStatusForwardCell: YYStatusCell {
         // 参照微博的底部View的右上角
         bkgButton.ff_AlignVertical(type: ff_AlignType.TopRight, referView: bottomView, size: nil)
         
+        
         // 被转发微博的Label约束
         // 参照微博的背景按钮的左上角
         forwardLabel.ff_AlignInner(type: ff_AlignType.TopLeft, referView: bkgButton, size: nil, offset: CGPoint(x: 8, y: 8))
         // 参照自己的宽度约束
         contentView.addConstraint(NSLayoutConstraint(item: forwardLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: UIScreen.width() - 2 * 8))
         
+        
         // 被转发微博的配图约束
-        let constraint = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: forwardLabel, size: CGSize(width: 0, height: 0), offset: CGPoint(x: 0, y: 8))
+        let constraint = pictureView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: forwardLabel, size: CGSize(width: UIScreen.width() - 2 * 8, height: 0), offset: CGPoint(x: 0, y: 8))
         
         // 获取微博配图的宽/高
         pictureViewWidthCons = pictureView.ff_Constraint(constraint, attribute: NSLayoutAttribute.Width)
@@ -59,7 +61,7 @@ class YYStatusForwardCell: YYStatusCell {
     /// 被转发微博的背景按钮
     private lazy var bkgButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(white: 0.96, alpha: 1)
+        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return button
     }()
     

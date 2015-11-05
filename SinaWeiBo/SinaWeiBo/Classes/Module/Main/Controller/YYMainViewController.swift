@@ -51,12 +51,11 @@ class YYMainViewController: UITabBarController {
     }
     
     /**
-    添加tabBar的导航控制器的子控制器
-    
-    - parameter Controller:      子控制器
-    - parameter title:           子控制器标题
-    - parameter nmlImgName:      子控制器图标
-    */
+     添加tabBar的导航控制器的子控制器
+     - parameter Controller:      子控制器
+     - parameter title:           子控制器标题
+     - parameter nmlImgName:      子控制器图标
+     */
     private func addChildViewController(controller: UIViewController, title: String, nmlImgName: String) {
         // 设置标题
         controller.title = title
@@ -89,47 +88,49 @@ class YYMainViewController: UITabBarController {
     
     // 点击了撰写按钮
     func composeButtonClick() {
-        print(__FUNCTION__)
-        
+        // 判断用户是否已登录
+        let nvc = YYUserAccount.userLogin() ? YYComposeViewController() : YYAuthorizeViewController()
+        // 跳转到发送微博控制器
+        presentViewController(UINavigationController(rootViewController: nvc), animated: true, completion: nil)
     }
     
     
     // 抽取代码备份
     private func backup_1() {
         
-//        // 添加tabBar中间的撰写按钮
-//        let newTabBar = YYMainTabBar()
-//        // 添加按钮的点击事件
-//        newTabBar.composeButton.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
-//        // 使用KVC赋值
-//        setValue(newTabBar, forKey: "tabBar")
+        //        // 添加tabBar中间的撰写按钮
+        //        let newTabBar = YYMainTabBar()
+        //        // 添加按钮的点击事件
+        //        newTabBar.composeButton.addTarget(self, action: "composeButtonClick", forControlEvents: UIControlEvents.TouchUpInside)
+        //        // 使用KVC赋值
+        //        setValue(newTabBar, forKey: "tabBar")
         
         
-//        homeVC.title = "首页"
-//        homeVC.tabBarItem.image = UIImage(named: "tabbar_home")
-//  // 设置选中图片的颜色                                                                              homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Selected)
-//  // 设置选中图片的渲染模式
-//  homeVC.tabBarItem.selectedImage = UIImage(named: "tabbar_home_highlighted")?.imageWithRenderingMode( UIImageRenderingMode.AlwaysOriginal)
-//        // 添加tabBar控制器的子控制器
-//        addChildViewController(UINavigationController(rootViewController: homeVC))
-
-
-//        messageVC.title = "消息"
-//        messageVC.tabBarItem.image = UIImage(named: "tabbar_message_center")
-//        // 添加tabBar控制器的子控制器
-//        addChildViewController(UINavigationController(rootViewController: messageVC))
-
-
-//        discoverVC.title = "发现"
-//        discoverVC.tabBarItem.image = UIImage(named: "tabbar_discover")
-//        // 添加tabBar控制器的子控制器
-//        addChildViewController(UINavigationController(rootViewController: discoverVC))
-
-
-//        profileVC.title = "我"
-//        profileVC.tabBarItem.image = UIImage(named: "tabbar_profile")
-//        // 添加tabBar控制器的子控制器
-//        addChildViewController(UINavigationController(rootViewController: profileVC))
+        //        homeVC.title = "首页"
+        //        homeVC.tabBarItem.image = UIImage(named: "tabbar_home")
+        //  // 设置选中图片的颜色                                                                              homeVC.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: UIControlState.Selected)
+        //  // 设置选中图片的渲染模式
+        //  homeVC.tabBarItem.selectedImage = UIImage(named: "tabbar_home_highlighted")?.imageWithRenderingMode( UIImageRenderingMode.AlwaysOriginal)
+        //        // 添加tabBar控制器的子控制器
+        //        addChildViewController(UINavigationController(rootViewController: homeVC))
+        
+        
+        //        messageVC.title = "消息"
+        //        messageVC.tabBarItem.image = UIImage(named: "tabbar_message_center")
+        //        // 添加tabBar控制器的子控制器
+        //        addChildViewController(UINavigationController(rootViewController: messageVC))
+        
+        
+        //        discoverVC.title = "发现"
+        //        discoverVC.tabBarItem.image = UIImage(named: "tabbar_discover")
+        //        // 添加tabBar控制器的子控制器
+        //        addChildViewController(UINavigationController(rootViewController: discoverVC))
+        
+        
+        //        profileVC.title = "我"
+        //        profileVC.tabBarItem.image = UIImage(named: "tabbar_profile")
+        //        // 添加tabBar控制器的子控制器
+        //        addChildViewController(UINavigationController(rootViewController: profileVC))
         
     }
     

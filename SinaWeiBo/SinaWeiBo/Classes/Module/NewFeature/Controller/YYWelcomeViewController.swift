@@ -92,6 +92,7 @@ class YYWelcomeViewController: UIViewController {
     ///
     private lazy var userIconView: UIImageView = {
         let userIconView = UIImageView(image: UIImage(named: "avatar_default_big"))
+        //userIconView.frame = CGRectInset(userIconView.bounds, 5, 5)
         userIconView.layer.cornerRadius = 42.5
         // userIconView.clipsToBounds = true
         userIconView.layer.masksToBounds = true

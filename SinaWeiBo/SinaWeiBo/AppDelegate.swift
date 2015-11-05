@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        print("启动: \(YYUserAccount.loadAccount())")
+        // print("启动: \(YYUserAccount.loadAccount())")
         
         // 启动界面休眠0.5秒
         NSThread.sleepForTimeInterval(0.5)
@@ -60,12 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 获取当前版本号
         let versionString = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
         let currentVersion = Double(versionString)!
-        print("当前版本号: \(currentVersion)")
+        //print("当前版本号: \(currentVersion)")
         
         // 获取之前版本号
         let sandboxVersionKey = "sanboxVersionKey"
         let sandboxVersion = NSUserDefaults.standardUserDefaults().doubleForKey(sandboxVersionKey)
-        print("之前版本号: \(sandboxVersion)")
+        //print("之前版本号: \(sandboxVersion)")
         
         // 保存当前版本号
         NSUserDefaults.standardUserDefaults().setDouble(currentVersion, forKey: sandboxVersionKey)

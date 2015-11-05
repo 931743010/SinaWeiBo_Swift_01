@@ -8,15 +8,19 @@
 // 微博配图
 
 import UIKit
+import SDWebImage
 
 class YYStatusPictureView: UICollectionView {
     
     /// 配图列数
     let column: Int = 3
     
-    /// 配图间距
-    let margin: CGFloat = 8
+    /// 配图列间距
+    let margin: CGFloat = 6
     
+    /// 配图行间距
+    let spacing: CGFloat = 4
+  
     // collectionViewCell 的重用标识
     private let pictureViewIdentifier = "pictureViewIdentifier"
     
@@ -37,13 +41,15 @@ class YYStatusPictureView: UICollectionView {
     /// 根据微博模型,计算配图尺寸
     func calculateViewSize() -> CGSize {
         
+        // 配图总宽度: (屏幕宽度 - (配图列数 + 1) * 列间距) / 配图列数
         let pictureWidth = (UIScreen.width() - (CGFloat(column) + 1) * margin) / CGFloat(column)
         let itemSize = CGSize(width: pictureWidth, height: pictureWidth)
         layout.itemSize  = itemSize
         
-        // 设置最小行列间距
-        layout.minimumInteritemSpacing = 0
+        // 设置最小行间距
         layout.minimumLineSpacing = 0
+        // 设置最小列间距
+        layout.minimumInteritemSpacing = 0
         
         // 获取微博模型配图数量
         let count = status?.picture_urls?.count ?? 0
@@ -54,29 +60,45 @@ class YYStatusPictureView: UICollectionView {
         }
         // 1 张配图
         if count == 1 {
-            let size = CGSize(width: 150, height: 120)
+            // 设置1张图片的默认宽高
+            var size = CGSize(width: 150, height: 120)
+            
+            // 获取到图片的url路径并转换成字符串
+            let urlString = status?.picture_urls![0].absoluteString
+            
+            // 从磁盘中获取到缓存好的图片,有可能没有成功
+            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(urlString)
+            
+            // 如果磁盘中有缓存的图片
+            if image != nil {
+                // 获取图片的实际尺寸赋值
+                size = image.size
+            }
+            // 重新赋值itemSize
             layout.itemSize = size
             return size
         }
+        
         // 重新设置最小行间距
-        layout.minimumLineSpacing = margin
+        layout.minimumLineSpacing = spacing
         
         // 4 张配图
         if count == 4 {
-            let width = 2 * itemSize.width + margin
-            return CGSize(width: width, height: width)
+            let width = 2 * itemSize.width + spacing
+            let size = CGSize(width: width, height: width)
+            return size
         }
         // 2,3,5,6,7,8,9 张配图
         // 计算行数 (图片数量 + 列数 - 1) / 列数
         let row = (count + column - 1) / column
         
         // 计算宽度 (列数 * itemSize的宽度) + (列数 - 1) * 间距
-        let width = (CGFloat(column) * itemSize.width) + (CGFloat(column) - 1) * margin
+        // let width = (CGFloat(column) * itemSize.width) + (CGFloat(column) - 1) * margin
         
         // 计算高度 (行数 * itemSize的宽度) + (行数 - 1) * 间距
         let height = (CGFloat(row) * itemSize.height) + (CGFloat(row) - 1) * margin
         
-        return CGSize(width: width, height: height)
+        return CGSize(width: UIScreen.width() - 2 * 8, height: height)
     }
     
     /// 流水布局
@@ -96,6 +118,7 @@ class YYStatusPictureView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 
 // MARK: - 扩展 YYStatusPictureView
 extension YYStatusPictureView: UICollectionViewDataSource {
@@ -147,8 +170,16 @@ class YYStatusPictureViewCell: UICollectionViewCell {
         // 添加约束,填充子视图
         iconView.ff_Fill(contentView)
     }
+    
     /// 懒加载
-    private lazy var iconView: UIImageView = UIImageView()
+    private lazy var iconView: UIImageView = {
+        let image = UIImageView()
+        // 设置图片填充模式
+        image.contentMode = UIViewContentMode.ScaleAspectFill
+        // 裁剪填充后多余的图片
+        image.clipsToBounds = true
+        return image
+    }()
     
 }
 

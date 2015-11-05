@@ -8,6 +8,7 @@
 // 微博模型数据
 
 import UIKit
+import SDWebImage
 
 class YYStatus: NSObject {
     
@@ -15,7 +16,10 @@ class YYStatus: NSObject {
     var created_at: String?
     
     /// 字符串型的微博ID
-    var idstr: String?
+    //var idstr: String?
+    
+    /// 微博ID
+    var id: Int = 0
     
     /// 微博来源
     var source: String?
@@ -110,19 +114,25 @@ class YYStatus: NSObject {
     
     ///
     /// 重写description, Print对象
-    ///
+    /*
     override var description: String {
-        let keys = ["created_at", "idstr", "source", "text", "user", "pic_urls"]
-        return "\n\t微博模型:\(dictionaryWithValuesForKeys(keys))"
+    let keys = ["created_at", "idstr", "source", "text", "user", "pic_urls"]
+    return "\n\t微博模型:\(dictionaryWithValuesForKeys(keys))"
     }
+    */
     
     
     ///
     /// 加载微博数据
     ///
-    class func loadStatus(finishend: (statuses:[YYStatus]?, error: NSError?) -> ()) {
+    /// 由控制器传入since_id和max_id
+    ///
+    class func loadStatus(since_id: Int, max_id: Int, finishend: (statuses:[YYStatus]?, error: NSError?) -> ()) {
+        
         /// 调用网络工具类加载微博数据
-        YYNetworkTools.sharedInstance.loadStatus { (result, error) -> () in
+        /// 尾随闭包,当尾随闭包前面没有参数的时候,()可以省略
+        YYNetworkTools.sharedInstance.loadStatus (since_id, max_id: max_id) { (result, error) -> () in
+            
             // 网络加载数据出错
             if error != nil {
                 print("error: \(error)")
@@ -140,7 +150,11 @@ class YYStatus: NSObject {
                     // 字典转模型
                     statuses.append(YYStatus(dict: dict))
                 }
-                // 字典转模型完成,通知调用者
+                
+                // TODO: 缓存网络加载的图片
+                self.cacheWebImage(statuses, finishend: finishend)
+                
+                // 字典转模型完成,通知调用者,有数据
                 finishend(statuses: statuses, error: nil)
                 
             } else {
@@ -148,5 +162,74 @@ class YYStatus: NSObject {
                 finishend(statuses: nil, error: nil)
             }
         }
-    }    
+    }
+    
+    /// 缓存网络图片
+    class func cacheWebImage(statuses: [YYStatus]?, finishend: (statuses:[YYStatus]?, error: NSError?) -> ()) {
+        
+        // 创建任务组
+        let group = dispatch_group_create()
+        
+        // 记录图片的大小
+        var length = 0
+        
+        // 判断是否有模型
+        guard let list = statuses else {
+            // 没有模型.直接return
+            return
+        }
+        
+        // 说明有模型,遍历模型
+        for status in list {
+            
+            // 判断是否有配图需要下载
+            let count = status.picture_urls?.count ?? 0
+            // 没有配图,跳过接着遍历下一个模型
+            if count == 0 {
+                continue
+            }
+            
+            // 判断是否有配图
+            if let urls = status.picture_urls {
+                
+                // 有配图,遍历图片一张一张缓存
+                // for url in urls {
+                
+                // 只有一张配图才进行缓存
+                if urls.count == 1 {
+                    let url = urls[0]
+                    
+                    // 在缓存之前放到任务组中
+                    dispatch_group_enter(group)
+                    
+                    // 缓存图片
+                    SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _, _) -> Void in
+                        
+                        // 缓存完成后离开任务组
+                        dispatch_group_leave(group)
+                        
+                        // 网络获取图片出错
+                        if error != nil {
+                            print("下载图片出错: \(url)")
+                            return
+                        }
+                        // 没有错误,获取到图片
+                        //print("下载图片成功: \(url)")
+                        
+                        // 记录下载的所有图片的大小
+                        if let data = UIImagePNGRepresentation(image) {
+                            length += data.length
+                        }
+                    })
+                }
+            }
+        }
+        // 监听任务组的通知
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            print("所有图片下载完成,总大小:\(length / 1024)kb")
+            // 通知调用者,有数据
+            finishend(statuses: statuses, error: nil)
+        }
+    }
 }
+

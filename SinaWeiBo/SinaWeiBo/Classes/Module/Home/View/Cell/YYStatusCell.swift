@@ -22,16 +22,19 @@ class YYStatusCell: UITableViewCell {
     var status: YYStatus? {
         didSet{
             // print("父类属性监视器")
+            
             // 将模型赋值给 topView
             topView.status = status
             // 设置微博内容
             contentLabel.text = status?.text
+            
             // 将微博模型赋值给配图
             pictureView.status = status
             // 获取到配图返回的宽高
             let size = pictureView.calculateViewSize()
             // print("配图size: \(size)")
-            // 重新赋值配图的宽高约束
+            
+            // TODO: 重新赋值配图的宽高约束
             pictureViewWidthCons?.constant = size.width
             pictureViewHeightCons?.constant = size.height
             
@@ -55,6 +58,10 @@ class YYStatusCell: UITableViewCell {
         return maxY
     }
     
+    /// 重写父类方法,空实现
+//    override func setSelected(selected: Bool, animated: Bool) {
+//        print(__FUNCTION__)
+//    }
     
     // MARK: - 构造函数
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

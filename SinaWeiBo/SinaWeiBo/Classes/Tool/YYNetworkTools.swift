@@ -167,17 +167,20 @@ class YYNetworkTools: NSObject {
     ///
     /// 判断Access Token是否有值,有值返回字典;没值则返回nil
     ///
-    func tokenDict() -> [String : AnyObject]? {
+    private func tokenDict() -> [String : AnyObject]? {
         if YYUserAccount.loadAccount()?.access_token == nil {
             return nil
         }
         return ["access_token" : YYUserAccount.loadAccount()!.access_token!]
     }
     
-    ///
+    /**
+    - parameter since_id: 若指定此参数,则返回ID比since_id大的微博(即比since_id时间晚的微博),默认为0
+    - parameter max_id:   若指定此参数,则返回ID小于或等于max_id的微博,默认为0
+    - parameter finished: 闭包回调
+    */
     // MARK: - 加载微博数据
-    ///
-    func loadStatus(finished: NetworkFinishedCallback) {
+    func loadStatus(since_id: Int, max_id: Int, finished: NetworkFinishedCallback) {
         /*
         if let accessToken = YYUserAccount.loadAccount()?.access_token {
             // print("\(accessToken)有值")
@@ -192,18 +195,51 @@ class YYNetworkTools: NSObject {
         }*/
         
         // 守卫,与可选绑定相反,没值才进来
-        guard let parameters = tokenDict() else {
+        guard var parameters = tokenDict() else {
             // access_token 没有值
             finished(result: nil, error: YYNetworkError.emptyToken.error())
             return
         }
         
+        // TODO:-------记号-------
+        // 添加参数since_id和max_id
+        // 先判断是否有传入这两个参数
+        if since_id > 0 {
+            parameters["since_id"] = since_id
+        } else if max_id > 0 {
+            parameters["max_id"] = max_id - 1
+        }
+        
         // 微博数据接口
+        // access_token 有值
         let urlString = "2/statuses/home_timeline.json"
         
-        // 使用AFNetworking发送GET网络请求
+        // 网络不给力,加载本地服务器数据
+        // loadLocalStatus(finished)
+
+        // 使用AFNetworking发送GET网络请求,加载网络数据
         GET_Request(urlString, parameters: parameters, finished: finished)
+    }
+    
+    
+    ///
+    //  MARK: - 本地测试数据
+    /// 加载本地服务器微博数据
+    private func loadLocalStatus(finished: NetworkFinishedCallback) {
+        // 获取本地文件路径
+        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+        // 加载文件
+        let data = NSData(contentsOfFile: path!)
         
+        do {
+            // 转换成json 数据
+            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+            // 获取到数据
+            finished(result: json as? [String : AnyObject], error: nil)
+            
+        } catch {
+            print("加载数据出错!")
+        }
     }
     
     
