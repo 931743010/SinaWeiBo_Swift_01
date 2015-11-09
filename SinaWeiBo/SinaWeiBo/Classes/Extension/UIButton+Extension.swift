@@ -12,13 +12,15 @@ import UIKit
 ///
 extension UIButton {
     /// 便利构造函数(方式1)
-    convenience init(title: String, imageName: String, titleColor: UIColor, fontSize: CGFloat) {
+    convenience init(title: String, imageName: String, selectedHighligtedImage: String, titleColor: UIColor, fontSize: CGFloat) {
         // 先调用本类指定构造函数
         self.init()
         setTitle(title, forState: UIControlState.Normal)
+        titleLabel?.font = UIFont.systemFontOfSize(fontSize)
         setTitleColor(titleColor, forState: UIControlState.Normal)
         setImage(UIImage(named: imageName), forState: UIControlState.Normal)
-        titleLabel?.font = UIFont.systemFontOfSize(fontSize)
+        setBackgroundImage(UIImage(named: selectedHighligtedImage), forState: UIControlState.Highlighted)
+        
     }
     
     /* 便利构造函数(方式2)

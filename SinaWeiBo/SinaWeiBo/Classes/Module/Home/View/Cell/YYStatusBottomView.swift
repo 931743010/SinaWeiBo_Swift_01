@@ -16,8 +16,8 @@ class YYStatusBottomView: UIView {
         super.init(frame: frame)
         prepareUI()
         // 设置背景色
-        backgroundColor = UIColor.randomColor()
-        //backgroundColor = UIColor(white: 0.96, alpha: 0.5)
+        //backgroundColor = UIColor.randomColor()
+        //backgroundColor = UIColor(white: 0.98, alpha: 0.5)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,19 +50,19 @@ class YYStatusBottomView: UIView {
         // 水平分隔线2
         lineViewTwo.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: self, size: CGSize(width: UIScreen.width(), height: 0.5))
         
-        //        forwardButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)
-        //        forwardButton.setBackgroundImage(nil, forState: UIControlState.Normal)
-        //        forwardButton.setBackgroundImage(UIImage(named: "health_button_orange_line"), forState: UIControlState.Highlighted)
-        
+        //forwardButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)
     }
-  
+    
+    
     // MARK: - 懒加载
     /// 转发按钮
-    private lazy var forwardButton: UIButton = UIButton (title: " 转发", imageName: "timeline_icon_retweet", titleColor: UIColor.darkGrayColor(), fontSize: 12)
+    private lazy var forwardButton: UIButton = UIButton (title: " 转发", imageName: "timeline_icon_retweet", selectedHighligtedImage:"timeline_card_middle_background_highlighted", titleColor: UIColor.darkGrayColor(), fontSize: 12)
+    
     /// 评论按钮
-    private lazy var commentButton: UIButton = UIButton (title: " 评论", imageName: "timeline_icon_comment", titleColor: UIColor.darkGrayColor(), fontSize: 12)
+    private lazy var commentButton: UIButton = UIButton (title: " 评论", imageName: "timeline_icon_comment", selectedHighligtedImage:"timeline_card_middle_background_highlighted", titleColor: UIColor.darkGrayColor(), fontSize: 12)
+    
     /// 点赞按钮
-    private lazy var praiseButton: UIButton = UIButton (title: " 赞", imageName: "timeline_icon_unlike", titleColor: UIColor.darkGrayColor(), fontSize: 12)
+    private lazy var praiseButton: UIButton = UIButton (title: " 赞", imageName: "timeline_icon_unlike", selectedHighligtedImage:"timeline_card_middle_background_highlighted", titleColor: UIColor.darkGrayColor(), fontSize: 12)
     
     /// 垂直分隔线1
     private lazy var separateLineViewOne: UIImageView = UIImageView(image: UIImage(named: "timeline_card_bottom_line_highlighted"))

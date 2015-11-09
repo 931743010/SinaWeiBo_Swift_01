@@ -8,7 +8,7 @@
 // [首页]控制器
 /*
 1. tableFooterView只显示一半?
-2. loadStatusData重复调用两次
+2. 刷新时,loadStatusData会被调用两次
 3. 获取到的新微博会显示2条
 4. 每次运行程序自动刷新时,会显示系统菊花
 */
@@ -50,7 +50,7 @@ class YYHomeViewController: YYBaseViewController {
         // TODO: 在这设置下拉刷新
         /// 自定义刷新控件,并添加自定义的view
         refreshControl = YYRefreshControl()
-        refreshControl?.tintColor = UIColor.clearColor()
+        //refreshControl?.tintColor = UIColor.clearColor()
         
         // 获取微博数据
         // loadStatusData()
@@ -95,23 +95,23 @@ class YYHomeViewController: YYBaseViewController {
                 return
             }
             
-            if since_id > 0 {
-                let count = statuses?.count ?? 0
-                self.showTipView(count)
-            }
-            
-            if statuses == nil || statuses?.count == 0 {
-                return
-            }
             
             // 网络没有错误
-//            if statuses == nil || since_id > 0 {
-//                // 获取到刷新的微博数量
+            if statuses == nil || since_id > 0 {
+                // 获取到刷新的微博数量
+                let count = statuses?.count ?? 0
+                print("count: \(count)")
+                self.showTipView(count)
+                //return
+            }
+//            if since_id > 0 {
 //                let count = statuses?.count ?? 0
-//                print("count: \(count)")
 //                self.showTipView(count)
-//                // return
 //            }
+//            if statuses == nil || statuses?.count == 0 {
+//                return
+//            }
+            
             
             if since_id > 0 {
                 
@@ -123,7 +123,7 @@ class YYHomeViewController: YYBaseViewController {
             } else if max_id > 0 {
                 
                 // 最新数据 = 原有数据 + 新获取到的数据
-                // 上拉刷新,将原有微博拼接到最新微博的后面
+                // 上拉刷新,将最新的微博拼接在原有微博的后面
                 self.statuses = self.statuses! + statuses!
                 print("上拉加载到: \(statuses?.count)条微博")
                 
@@ -156,16 +156,15 @@ class YYHomeViewController: YYBaseViewController {
         let dutrtion = 0.5
         UIView.animateWithDuration(dutrtion, animations: { () -> Void in
             // UIView.setAnimationRepeatAutoreverses(true)  动画反过来执行
-            // UIView.setAnimationRepeatCount(3)  重复执行指定的动画次数
+            // UIView.setAnimationRepeatCount(3)  动画重复执行指定的次数
             tipLabel.frame.origin.y = tipLabelHeight
             }) { (_) -> Void in
-                UIView.animateWithDuration(dutrtion, delay: 0.3, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                UIView.animateWithDuration(dutrtion, delay: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                     tipLabel.frame.origin.y = -20 - tipLabelHeight
                     }, completion: { (_) -> Void in
                         tipLabel.removeFromSuperview()
                 })
         }
-        
     }
     
     
@@ -259,7 +258,7 @@ class YYHomeViewController: YYBaseViewController {
             // 开启指示器
             pullUpView.startAnimating()
             // 上拉加载更多数据
-            //loadStatusData()
+            loadStatusData()
         }
         return cell
     }
@@ -267,8 +266,8 @@ class YYHomeViewController: YYBaseViewController {
     // MARK: - 懒加载
     /// 上拉加载更多数据时显示的指示器
     private lazy var pullUpView: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        //indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         indicator.color = UIColor.darkGrayColor()
         return indicator
     }()

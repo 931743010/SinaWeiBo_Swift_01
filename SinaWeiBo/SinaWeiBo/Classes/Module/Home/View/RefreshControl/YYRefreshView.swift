@@ -11,7 +11,7 @@ import UIKit
 
 class YYRefreshView: UIView {
     
-    /// 顶部view
+    /// tipView
     @IBOutlet weak var tipView: UIView!
     /// 文本标签
     @IBOutlet weak var textLabel: UILabel!

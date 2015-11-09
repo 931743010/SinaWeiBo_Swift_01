@@ -11,14 +11,13 @@ import UIKit
 
 class YYRefreshControl: UIRefreshControl {
     
-    // 根据这个值来改变箭头方向
-    private let RefreshControlOffset: CGFloat = -50
+    // MARK: - 属性
     // 标记, 用于去除重复调用
     private var isUp = false
     
+    // 根据这个值来改变箭头方向
+    private let RefreshControlOffset: CGFloat = -50
     
-    
-    // MARK: - 属性
     // 重写父类的frame属性,实现属性监视器
     override var frame: CGRect {
         didSet {
@@ -70,6 +69,8 @@ class YYRefreshControl: UIRefreshControl {
     private func prepareUI() {
         // 添加子控件
         addSubview(refreshView)
+        // 设置背景色
+        refreshView.backgroundColor = UIColor.whiteColor()
         // 添加约束
         refreshView.ff_AlignInner(type: ff_AlignType.CenterCenter, referView: self, size: refreshView.bounds.size)
     }

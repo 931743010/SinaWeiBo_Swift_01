@@ -17,23 +17,19 @@ class YYStatusTopView: UIView {
         didSet{
             // 设置用户头像
             if let iconUrl = status?.user?.profile_image_url {
-                // 网络加载头像
+                // 从网络加载用户头像
                 //iconView.yy_setImageWithURL(NSURL(string: iconUrl))
                 iconView.yy_setImageWithURL(NSURL(string: iconUrl), placeholderImage: UIImage(named: "avatar_default_small"))
             }
             nameLabel.text = status?.user?.name                       // 用户昵称
             timeLabel.text = status?.created_at                       // 微博时间
-            sourceLabel.text = "来自iphone 6s plus"                    // 微博来源
+            sourceLabel.text = "来自iPhone 6s plus"                    // 微博来源
             mbrankImgView.image = status?.user?.mbrankImage           // 会员等级
             verifiedImgView.image = status?.user?.verified_typeImage  // 认证用户
             
             // 判断是否Vip,显示不同颜色的昵称
             if let vip = status?.user?.mbrank {
-                if vip > 0 && vip <= 6 {
-                    nameLabel.textColor = UIColor.orangeColor()
-                } else {
-                    nameLabel.textColor = UIColor.darkGrayColor()
-                }
+                nameLabel.textColor = vip > 0 && vip <= 6 ? UIColor.orangeColor() : UIColor.darkGrayColor()
             }
         }
     }

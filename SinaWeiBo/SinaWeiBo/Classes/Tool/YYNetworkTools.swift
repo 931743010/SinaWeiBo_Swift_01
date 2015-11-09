@@ -223,6 +223,34 @@ class YYNetworkTools: NSObject {
     
     
     ///
+    //  MARK: - 发布微博
+    /**
+    发布微博
+    
+    - parameter status:   微博文本内容
+    - parameter finished: 闭包回调
+    */
+    func sendStatus(status: String, finished:NetworkFinishedCallback) {
+        // 守卫,与可选绑定相反,没值才进来
+        guard var parameters = tokenDict() else {
+            // access_token 没有值
+            finished(result: nil, error: YYNetworkError.emptyToken.error())
+            return
+        }
+        
+        // 参数,要发布的微博文本内容,必须做URLencode,内容不超过140个汉字
+        parameters["status"] = status
+        
+        // 请求路径
+        let urlString = "2/statuses/update.json"
+        
+        // 使用AFNetworking发送POST网络请求
+        POST_Request(urlString, parameters: parameters, finished: finished)
+        
+    }
+    
+    
+    ///
     //  MARK: - 本地测试数据
     /// 加载本地服务器微博数据
     private func loadLocalStatus(finished: NetworkFinishedCallback) {

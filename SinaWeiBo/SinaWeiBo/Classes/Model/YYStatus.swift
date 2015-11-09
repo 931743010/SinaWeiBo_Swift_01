@@ -155,7 +155,7 @@ class YYStatus: NSObject {
                 self.cacheWebImage(statuses, finishend: finishend)
                 
                 // 字典转模型完成,通知调用者,有数据
-                finishend(statuses: statuses, error: nil)
+                // finishend(statuses: statuses, error: nil)
                 
             } else {
                 // 通知调用者

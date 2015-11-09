@@ -20,6 +20,7 @@ class YYStatusForwardCell: YYStatusCell {
             let text = status?.retweeted_status?.text ?? ""
             // 设置被转发微博的内容
             forwardLabel.text = "@\(name):\(text)"
+            forwardLabel.sizeToFit()
         }
     }
     

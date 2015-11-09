@@ -25,8 +25,10 @@ class YYStatusCell: UITableViewCell {
             
             // 将模型赋值给 topView
             topView.status = status
+            
             // 设置微博内容
             contentLabel.text = status?.text
+            contentLabel.sizeToFit()
             
             // 将微博模型赋值给配图
             pictureView.status = status
@@ -59,9 +61,10 @@ class YYStatusCell: UITableViewCell {
     }
     
     /// 重写父类方法,空实现
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        print(__FUNCTION__)
-//    }
+    override func setSelected(selected: Bool, animated: Bool) {
+        //super.setSelected(selected, animated: animated)
+        //print(__FUNCTION__)
+    }
     
     // MARK: - 构造函数
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

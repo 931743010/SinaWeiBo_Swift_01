@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37DCA41ADDA4D10682A44B0C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46626C9CB1C18B0D3A122906 /* Pods.framework */; };
+		A23011DE1BECCCEA00BC5222 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23011DD1BECCCEA00BC5222 /* Test.storyboard */; };
 		A24EE5F01BE495F70035F04F /* YYHomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */; };
 		A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6401BDE5A1F00ECF5D4 /* AppDelegate.swift */; };
 		A252B6481BDE5A1F00ECF5D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A252B6471BDE5A1F00ECF5D4 /* Assets.xcassets */; };
@@ -20,10 +21,17 @@
 		A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */; };
 		A255BD2F1BE648BE0067D62B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255BD2E1BE648BE0067D62B /* UIButton+Extension.swift */; };
 		A255BD311BE655990067D62B /* YYStatusBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255BD301BE655990067D62B /* YYStatusBottomView.swift */; };
+		A26166D51BEF6D310091BE78 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166CB1BEF6D310091BE78 /* UITextView+Extension.swift */; };
+		A26166D61BEF6D310091BE78 /* YYEmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166CD1BEF6D310091BE78 /* YYEmoticonViewController.swift */; };
+		A26166D71BEF6D310091BE78 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A26166CE1BEF6D310091BE78 /* Emoticons.bundle */; };
+		A26166D81BEF6D310091BE78 /* YYEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D01BEF6D310091BE78 /* YYEmoticon.swift */; };
+		A26166DA1BEF6D310091BE78 /* YYEmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D31BEF6D310091BE78 /* YYEmoticonCell.swift */; };
+		A26166DB1BEF6D310091BE78 /* YYTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */; };
 		A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641651BE51DBF00CF6727 /* YYStatusCell.swift */; };
 		A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641671BE51E4900CF6727 /* YYStatusTopView.swift */; };
 		A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641691BE521B600CF6727 /* UILabel+Extension.swift */; };
 		A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */; };
+		A2709A7F1BED10DF003E292F /* YYPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2709A7E1BED10DF003E292F /* YYPlaceholderTextView.swift */; };
 		A29203D41BEB7671001C7A66 /* YYComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29203D31BEB7671001C7A66 /* YYComposeViewController.swift */; };
 		A29D34811BE1FBAF008E3E44 /* YYWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */; };
 		A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */; };
@@ -50,6 +58,7 @@
 		46626C9CB1C18B0D3A122906 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9A528CC5F23DB904463BD6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9F89B815AE5A9A70C8AB9E5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A23011DD1BECCCEA00BC5222 /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYHomeTitleView.swift; sourceTree = "<group>"; };
 		A252B63D1BDE5A1F00ECF5D4 /* SinaWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinaWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A252B6401BDE5A1F00ECF5D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,10 +73,17 @@
 		A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		A255BD2E1BE648BE0067D62B /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		A255BD301BE655990067D62B /* YYStatusBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusBottomView.swift; sourceTree = "<group>"; };
+		A26166CB1BEF6D310091BE78 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		A26166CD1BEF6D310091BE78 /* YYEmoticonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYEmoticonViewController.swift; sourceTree = "<group>"; };
+		A26166CE1BEF6D310091BE78 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
+		A26166D01BEF6D310091BE78 /* YYEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYEmoticon.swift; sourceTree = "<group>"; };
+		A26166D31BEF6D310091BE78 /* YYEmoticonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYEmoticonCell.swift; sourceTree = "<group>"; };
+		A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYTextAttachment.swift; sourceTree = "<group>"; };
 		A26641651BE51DBF00CF6727 /* YYStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusCell.swift; sourceTree = "<group>"; };
 		A26641671BE51E4900CF6727 /* YYStatusTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusTopView.swift; sourceTree = "<group>"; };
 		A26641691BE521B600CF6727 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		A26921941BE08C1C00CFF248 /* YYNetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNetworkTools.swift; sourceTree = "<group>"; };
+		A2709A7E1BED10DF003E292F /* YYPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYPlaceholderTextView.swift; sourceTree = "<group>"; };
 		A29203D31BEB7671001C7A66 /* YYComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYComposeViewController.swift; sourceTree = "<group>"; };
 		A29D34801BE1FBAF008E3E44 /* YYWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYWelcomeViewController.swift; sourceTree = "<group>"; };
 		A29D34821BE1FE1B008E3E44 /* YYNewFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYNewFeatureViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +124,14 @@
 				46626C9CB1C18B0D3A122906 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A23011DC1BECCCC400BC5222 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A23011DD1BECCCEA00BC5222 /* Test.storyboard */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		A252B6341BDE5A1F00ECF5D4 = {
@@ -155,6 +179,7 @@
 		A252B6531BDE5B3D00ECF5D4 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				A26166C91BEF6D310091BE78 /* Emoticon */,
 				A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */,
 			);
 			path = Library;
@@ -173,6 +198,7 @@
 		A252B6551BDE5B3D00ECF5D4 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A23011DC1BECCCC400BC5222 /* Test */,
 				A252B65E1BDE5B3D00ECF5D4 /* Main */,
 				A252B65A1BDE5B3D00ECF5D4 /* Home */,
 				A252B6621BDE5B3D00ECF5D4 /* Message */,
@@ -372,6 +398,51 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		A26166C91BEF6D310091BE78 /* Emoticon */ = {
+			isa = PBXGroup;
+			children = (
+				A26166CF1BEF6D310091BE78 /* Model */,
+				A26166D21BEF6D310091BE78 /* View */,
+				A26166CC1BEF6D310091BE78 /* Controller */,
+				A26166CA1BEF6D310091BE78 /* Category */,
+				A26166CE1BEF6D310091BE78 /* Emoticons.bundle */,
+			);
+			path = Emoticon;
+			sourceTree = "<group>";
+		};
+		A26166CA1BEF6D310091BE78 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				A26166CB1BEF6D310091BE78 /* UITextView+Extension.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		A26166CC1BEF6D310091BE78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A26166CD1BEF6D310091BE78 /* YYEmoticonViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A26166CF1BEF6D310091BE78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A26166D01BEF6D310091BE78 /* YYEmoticon.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A26166D21BEF6D310091BE78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A26166D31BEF6D310091BE78 /* YYEmoticonCell.swift */,
+				A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A29203CF1BEB7614001C7A66 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +471,7 @@
 		A29203D21BEB7614001C7A66 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2709A7E1BED10DF003E292F /* YYPlaceholderTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,7 +636,9 @@
 			files = (
 				A252B6481BDE5A1F00ECF5D4 /* Assets.xcassets in Resources */,
 				A2A071871BE8EE9700251F10 /* YYRefreshView.xib in Resources */,
+				A23011DE1BECCCEA00BC5222 /* Test.storyboard in Resources */,
 				A2BBC22F1BE83BBE006A1968 /* statuses.json in Resources */,
+				A26166D71BEF6D310091BE78 /* Emoticons.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,18 +697,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A26166D61BEF6D310091BE78 /* YYEmoticonViewController.swift in Sources */,
 				A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */,
+				A2709A7F1BED10DF003E292F /* YYPlaceholderTextView.swift in Sources */,
 				A2DEF15F1BE4F34800BCA9BA /* UIView+AutoLayout.swift in Sources */,
 				A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */,
 				A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */,
 				A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */,
 				A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */,
+				A26166D81BEF6D310091BE78 /* YYEmoticon.swift in Sources */,
 				A29D34811BE1FBAF008E3E44 /* YYWelcomeViewController.swift in Sources */,
 				A2B7D2AC1BDE9695003D3486 /* YYBaseViewController.swift in Sources */,
 				A252B6751BDE648100ECF5D4 /* YYMainViewController.swift in Sources */,
 				A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */,
+				A26166DA1BEF6D310091BE78 /* YYEmoticonCell.swift in Sources */,
 				A29203D41BEB7671001C7A66 /* YYComposeViewController.swift in Sources */,
 				A2A071891BE8F03E00251F10 /* YYRefreshView.swift in Sources */,
+				A26166DB1BEF6D310091BE78 /* YYTextAttachment.swift in Sources */,
 				A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */,
 				A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */,
 				A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */,
@@ -650,6 +729,7 @@
 				A255BD291BE62B4B0067D62B /* UIScreen+Extension.swift in Sources */,
 				A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */,
 				A252B6731BDE63E700ECF5D4 /* YYProfileViewController.swift in Sources */,
+				A26166D51BEF6D310091BE78 /* UITextView+Extension.swift in Sources */,
 				A2DEF1651BE4FACC00BCA9BA /* YYUser.swift in Sources */,
 				A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */,
 				A2BF308A1BE771F600D3AA73 /* YYStatusNormalCell.swift in Sources */,
