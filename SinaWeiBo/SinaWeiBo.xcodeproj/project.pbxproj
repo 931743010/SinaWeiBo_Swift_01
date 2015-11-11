@@ -38,6 +38,8 @@
 		A2A071851BE8ED6E00251F10 /* YYRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A071841BE8ED6E00251F10 /* YYRefreshControl.swift */; };
 		A2A071871BE8EE9700251F10 /* YYRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A071861BE8EE9700251F10 /* YYRefreshView.xib */; };
 		A2A071891BE8F03E00251F10 /* YYRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A071881BE8F03E00251F10 /* YYRefreshView.swift */; };
+		A2A589391BF2FE9800397A8C /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A589371BF2FE9800397A8C /* UIImage+Extension.swift */; };
+		A2A5893A1BF2FE9800397A8C /* YYPhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A589381BF2FE9800397A8C /* YYPhotoSelectorViewController.swift */; };
 		A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */; };
 		A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2A51BDE958B003D3486 /* YYMainTabBar.swift */; };
 		A2B7D2AA1BDE9656003D3486 /* YYVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7D2A91BDE9656003D3486 /* YYVisitorView.swift */; };
@@ -90,6 +92,8 @@
 		A2A071841BE8ED6E00251F10 /* YYRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYRefreshControl.swift; sourceTree = "<group>"; };
 		A2A071861BE8EE9700251F10 /* YYRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYRefreshView.xib; sourceTree = "<group>"; };
 		A2A071881BE8F03E00251F10 /* YYRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYRefreshView.swift; sourceTree = "<group>"; };
+		A2A589371BF2FE9800397A8C /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		A2A589381BF2FE9800397A8C /* YYPhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYPhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		A2B7D2A51BDE958B003D3486 /* YYMainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYMainTabBar.swift; sourceTree = "<group>"; };
 		A2B7D2A91BDE9656003D3486 /* YYVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYVisitorView.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				A26166C91BEF6D310091BE78 /* Emoticon */,
+				A2A589361BF2FE9800397A8C /* PhotoSelector */,
 				A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */,
 			);
 			path = Library;
@@ -519,6 +524,15 @@
 			path = RefreshControl;
 			sourceTree = "<group>";
 		};
+		A2A589361BF2FE9800397A8C /* PhotoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				A2A589371BF2FE9800397A8C /* UIImage+Extension.swift */,
+				A2A589381BF2FE9800397A8C /* YYPhotoSelectorViewController.swift */,
+			);
+			path = PhotoSelector;
+			sourceTree = "<group>";
+		};
 		A2BD47DF1BDFC19A00B414E6 /* Authorize */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +738,7 @@
 				A2A071851BE8ED6E00251F10 /* YYRefreshControl.swift in Sources */,
 				A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */,
 				A2DEF1631BE4FA9A00BCA9BA /* YYStatus.swift in Sources */,
+				A2A589391BF2FE9800397A8C /* UIImage+Extension.swift in Sources */,
 				A252B6711BDE63C900ECF5D4 /* YYDiscoverViewController.swift in Sources */,
 				A252B66F1BDE639800ECF5D4 /* YYMessageViewController.swift in Sources */,
 				A255BD291BE62B4B0067D62B /* UIScreen+Extension.swift in Sources */,
@@ -734,6 +749,7 @@
 				A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */,
 				A2BF308A1BE771F600D3AA73 /* YYStatusNormalCell.swift in Sources */,
 				A255BD311BE655990067D62B /* YYStatusBottomView.swift in Sources */,
+				A2A5893A1BF2FE9800397A8C /* YYPhotoSelectorViewController.swift in Sources */,
 				A24EE5F01BE495F70035F04F /* YYHomeTitleView.swift in Sources */,
 				A252B66D1BDE635700ECF5D4 /* YYHomeViewController.swift in Sources */,
 			);

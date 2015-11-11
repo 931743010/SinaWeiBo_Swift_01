@@ -226,11 +226,11 @@ class YYNetworkTools: NSObject {
     //  MARK: - 发布微博
     /**
     发布微博
-    
+    - parameter image:    微博图片,可能没有
     - parameter status:   微博文本内容
     - parameter finished: 闭包回调
     */
-    func sendStatus(status: String, finished:NetworkFinishedCallback) {
+    func sendStatus(image: UIImage?, status: String, finished:NetworkFinishedCallback) {
         // 守卫,与可选绑定相反,没值才进来
         guard var parameters = tokenDict() else {
             // access_token 没有值
@@ -241,12 +241,36 @@ class YYNetworkTools: NSObject {
         // 参数,要发布的微博文本内容,必须做URLencode,内容不超过140个汉字
         parameters["status"] = status
         
-        // 请求路径
-        let urlString = "2/statuses/update.json"
-        
-        // 使用AFNetworking发送POST网络请求
-        POST_Request(urlString, parameters: parameters, finished: finished)
-        
+        if let image = image {
+            // 请求路径
+            // 发送带图片的微博
+            let urlString = "https://upload.api.weibo.com/2/statuses/upload.json"
+            // 发送POST网络请求
+            afnManager.POST(urlString, parameters: parameters, constructingBodyWithBlock: { (formData) -> Void in
+                
+                let data = UIImagePNGRepresentation(image)!
+                /**
+                *  上传图片资源的方法
+                *  @param data      上传的图片的二进制
+                *  @param name      接口要求传递的参数的名称 "pic"
+                *  @param fileName  上传到服务器保存的名称,没有要求,可随便填
+                *  @param mimeType  上传的图片资源的类型
+                */
+                formData.appendPartWithFileData(data, name: "pic", fileName: "", mimeType: "image/png")
+                }, success: { (_, result) -> Void in
+                    // 上传成功回调
+                    finished(result: result as? [String : AnyObject], error: nil)
+                }, failure: { (_, error) -> Void in
+                    // 上传失败回调
+                    finished(result: nil, error: error)
+            })
+        } else {
+            // 请求路径
+            // 发送没有图片的微博
+            let urlString = "2/statuses/update.json"
+            // 使用AFNetworking发送POST网络请求
+            POST_Request(urlString, parameters: parameters, finished: finished)
+        }
     }
     
     
@@ -275,9 +299,9 @@ class YYNetworkTools: NSObject {
     // MARK: - 封装 AFNetworking 的 GET 请求方法
     ///
     func GET_Request(URLString: String, parameters: AnyObject?, finished: NetworkFinishedCallback) {
-        afnManager.GET(URLString, parameters: parameters, success: { (_, request) -> Void in
+        afnManager.GET(URLString, parameters: parameters, success: { (_, result) -> Void in
             
-            finished(result: request as? [String : AnyObject], error: nil)
+            finished(result: result as? [String : AnyObject], error: nil)
             
             }) { (_, error: NSError) -> Void in
                 
@@ -289,9 +313,9 @@ class YYNetworkTools: NSObject {
     // MARK: - 封装 AFNetworking 的 POST 请求方法
     ///
     func POST_Request(URLString: String, parameters: AnyObject?, finished: NetworkFinishedCallback) {
-        afnManager.POST(URLString, parameters: parameters, success: { (_, request) -> Void in
+        afnManager.POST(URLString, parameters: parameters, success: { (_, result) -> Void in
             
-            finished(result: request as? [String : AnyObject], error: nil)
+            finished(result: result as? [String : AnyObject], error: nil)
             
             }) { (_, error: NSError) -> Void in
                 

@@ -74,6 +74,9 @@ class YYStatusPictureView: UICollectionView {
                 // 获取图片的实际尺寸赋值
                 size = image.size
             }
+            if size.width < 60 {
+                size.width = 90
+            }
             // 重新赋值itemSize
             layout.itemSize = size
             return size

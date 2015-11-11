@@ -14,8 +14,12 @@ class YYComposeViewController: UIViewController {
     
     // MARK: - 约束属性
     private var tooBarBottomCon: NSLayoutConstraint?
+    
+    // 照片选择器的底部约束
+    private var photoSelectorViewBttomCons: NSLayoutConstraint?
+    
     // 设置微博内容的最大长度
-    private let maxStatusLength = 10
+    private let maxStatusLength = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +68,17 @@ class YYComposeViewController: UIViewController {
     
     /// 准备UI
     private func prepareUI() {
+        view.addSubview(textView)
+        view.addSubview(photoSelectorVC.view)
+        view.addSubview(tooBar)
+        view.addSubview(lengthTipLabel)
+        
         setupNavigationBar()
-        setupToolBar()
         setupTextView()
+        preparePhotoSelectorView()
+        setupToolBar()
         prepareStatusLabel()
+        
     }
     
     /// 设置导航栏按钮
@@ -112,8 +123,7 @@ class YYComposeViewController: UIViewController {
     
     /// 设置tooBar
     private func setupToolBar() {
-        // 添加子控件
-        view.addSubview(tooBar)
+        
         // 添加约束
         let cons = tooBar.ff_AlignInner(type: ff_AlignType.BottomLeft, referView: view, size: CGSize(width: UIScreen.width(), height: 44))
         // 获取tooBar的底部约束
@@ -165,8 +175,7 @@ class YYComposeViewController: UIViewController {
     
     /// 设置自定义textView
     private func setupTextView() {
-        // 添加子控件
-        view.addSubview(textView)
+        //textView.backgroundColor = UIColor.brownColor()
         // 添加约束
         // 相对于控制器view的内部左上角
         textView.ff_AlignInner(type: ff_AlignType.TopLeft, referView: view, size: nil)
@@ -176,16 +185,50 @@ class YYComposeViewController: UIViewController {
     
     /// 准备显示微博内容剩余长度的label
     private func prepareStatusLabel() {
-        // 添加子控件
-        view.addSubview(lengthTipLabel)
+   
         // 添加约束
         lengthTipLabel.ff_AlignVertical(type: ff_AlignType.TopRight, referView: tooBar, size: nil, offset: CGPoint(x: -8, y: -8))
     }
+    
+    /// 准备照片选择器控制器
+    private func preparePhotoSelectorView() {
+        // 添加子控件
+        let photoSelectorView = photoSelectorVC.view
+
+        
+        // 添加约束
+        let views = ["psv":photoSelectorView,"tb":tooBar]
+        photoSelectorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 水平约束
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[psv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views ))
+        
+        // 垂直约束
+        //view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-160-[psv(190)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        //photoSelectorView.ff_AlignVertical(type: ff_AlignType.BottomRight, referView: view, size: <#T##CGSize?#>)
+        
+        // 高度约束
+        view.addConstraint(NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0))
+        // 底部重合
+        photoSelectorViewBttomCons = NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: view.frame.height * 0.7)
+        view.addConstraint(photoSelectorViewBttomCons!)
+        
+    }
+    
     
     // MARK: - 按钮点击事件
     /// 图片按钮
     func pictureButton() {
         print("--图片")
+        // 点击图片按钮后让照片选择器View弹上来
+        photoSelectorViewBttomCons?.constant = 0
+        // 键盘退下去
+        textView.resignFirstResponder()
+        // 动画效果
+        UIView.animateWithDuration(0.25) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
+        
     }
     /// #号按钮
     func trendButton() {
@@ -228,16 +271,20 @@ class YYComposeViewController: UIViewController {
         let statusLength = text.characters.count
         if maxStatusLength - statusLength < 0 {
             SVProgressHUD.showErrorWithStatus("微博长度超出限制", maskType: SVProgressHUDMaskType.Gradient)
+            textView.resignFirstResponder()
             return
         }
+        // 获取照片选择器中的图片
+        let image = photoSelectorVC.photos.first
         
         // 显示发布微博的状态
         SVProgressHUD.showWithStatus("正在发布微博", maskType: SVProgressHUDMaskType.Gradient)
         
         // 调用网络工具发送微博
-        YYNetworkTools.sharedInstance.sendStatus(text) { (result, error) -> () in
+        YYNetworkTools.sharedInstance.sendStatus(image, status: text) { (result, error) -> () in
             if error != nil {
                 SVProgressHUD.showErrorWithStatus("微博发布失败", maskType: SVProgressHUDMaskType.Gradient)
+                //self.textView.resignFirstResponder()
             }
         }
         // 发送成功,关闭控制器
@@ -247,8 +294,13 @@ class YYComposeViewController: UIViewController {
     
     /// 重写viewDidAppear
     override func viewDidAppear(animated: Bool) {
-        // 让textView成为第一响应者
-        textView.becomeFirstResponder()
+        super.viewDidAppear(animated)
+        
+        // 当照片选择器没有显示的时候才弹出键盘
+        if photoSelectorViewBttomCons?.constant != 0 {
+            // 让textView成为第一响应者
+            textView.becomeFirstResponder()
+        }
     }
     
     /// 取消按钮
@@ -280,13 +332,13 @@ class YYComposeViewController: UIViewController {
         let textView = YYPlaceholderTextView()
         
         // 设置textView的顶部偏移
-        textView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        //textView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         
         // 当textView被拖动的时候就会将键盘自动隐藏,前提是textView可以拖动
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
         textView.textColor = UIColor.blackColor()
         textView.font = UIFont.systemFontOfSize(16)
-        
+    
         //textView.bounces = true
         // 设置垂直方向拖动的弹簧效果
         textView.alwaysBounceVertical = true
@@ -310,9 +362,18 @@ class YYComposeViewController: UIViewController {
     /// 显示微博内容长度的label
     private lazy var lengthTipLabel: UILabel = {
         let label = UILabel(fontSize: 12, textColor: UIColor.lightGrayColor())
-        label.backgroundColor = UIColor.randomColor()
+        //label.backgroundColor = UIColor.randomColor()
         label.text = String(self.maxStatusLength)
         return label
+    }()
+    
+    
+    /// 懒加载照片选择器控制器
+    private lazy var photoSelectorVC: YYPhotoSelectorViewController = {
+        let controller = YYPhotoSelectorViewController()
+        // 添加给外面的控制器管理
+        self.addChildViewController(controller)
+        return controller
     }()
     
 }
