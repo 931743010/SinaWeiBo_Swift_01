@@ -275,7 +275,109 @@ class YYEmoticon: NSObject {
         return "\n\n\t表情模型:chs: \(chs),png: \(png),code: \(code) removeEmoticon: \(removeEmoticon), times:\(times)"
     }
     
+    
+    /// 将表情模型转换成带表情图片的属性文本字符串
+    func emoticonToAttrString(font: UIFont) -> NSAttributedString {
+        // 守卫
+        guard let pngPath = pngPath else {
+            // 没有图片
+            return NSAttributedString(string: "")
+        }
+        
+        // 创建文本附件
+        let attachment = YYTextAttachment()
+        
+        // 为附件赋值表情的图片的名称
+        attachment.name = chs
+        
+        // 获得文本内容的线高
+        let height = font.lineHeight ?? 20
+        
+        // 设置附件的大小
+        attachment.bounds = CGRect(x: 0, y: -(height * 0.2), width: height, height: height)
+        
+        // 将image 添加到附件
+        attachment.image = UIImage(contentsOfFile: pngPath)
+        
+        // 将附件添加到属性文本
+        let attrString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+        
+        // 给属性文本添加font属性(没有font属性图片后面的表情会很小)
+        attrString.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: 1))
+        
+        return attrString
+    }
+    
+    /// 根据表情文本获取对应的表情模型
+    class func emoticonStringToEmoticon(emoticonString: String) -> YYEmoticon? {
+        // 接收遍历的结果
+        var emoticon: YYEmoticon?
+        
+        // 遍历所有表情模型,判断表情模型的名称是否等于 emoticonString
+        for package in YYEmoticonPackage.packages {
+            
+            // 获取对应的表情包,过滤
+            let result = package.emoticons?.filter({ (e1) -> Bool in
+                // 返回结果
+                return e1.chs == emoticonString
+            })
+            // 获取到遍历匹配的第一个结果
+            emoticon = result?.first
+            // 如果有结果则不再遍历
+            if emoticon != nil {
+                break
+            }
+        }
+        return emoticon
+    }
+    
+    
+    /**
+     将表情文本转换成表情图片属性文本
+     - parameter string: 表情文本
+     - returns: 表情图片属性文本
+     */
+    class func emoticonStringToEmoticonAttrString(string: String, font: UIFont) -> NSAttributedString {
+        
+        // 匹配规则
+        let pattern = "\\[.*?\\]"
+        // 使用正则表达式匹配字符串
+        let regular = try! NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.DotMatchesLineSeparators)
+        // 查找string中的表情字符串
+        let result = regular.matchesInString(string, options: NSMatchingOptions(rawValue: 0), range: NSRange(location: 0, length: string.characters.count))
+        
+        /*遍历
+        for result in result {
+        // 获取到表情字符串的范围
+        let range = result.rangeAtIndex(0)
+        print("range: \(range)")
+        }*/
+        
+        // 创建可变属性文本字符串
+        let attrString_M = NSMutableAttributedString(string: string)
+        
+        // 反过来截取字符串
+        var count = result.count
+        while count > 0 {
+            let res = result[--count]
+            //print("res:\(res.numberOfRanges)")
+            // 获取到表情字符串的范围
+            let range = res.rangeAtIndex(0)
+            
+            // 截取范围内的表情文本
+            let emoticonSting = (string as NSString).substringWithRange(range)
+            print("表情字符串: \(emoticonSting)")
+            
+            // 根据表情文本获取对应的表情模型
+            if let emoticonStr = YYEmoticon.emoticonStringToEmoticon(emoticonSting) {
+                print("找到表情: \(emoticonStr)")
+                
+                // 将表情模型转换成带表情图片的属性文本字符串
+                let attrString = emoticonStr.emoticonToAttrString(font)
+                // 将范围内的表情文本替换成表情图片属性文本
+                attrString_M.replaceCharactersInRange(range, withAttributedString: attrString)
+            }
+        }
+        return attrString_M
+    } 
 }
-
-
-

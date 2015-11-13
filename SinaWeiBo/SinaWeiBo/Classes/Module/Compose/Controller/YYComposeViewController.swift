@@ -68,6 +68,7 @@ class YYComposeViewController: UIViewController {
     
     /// 准备UI
     private func prepareUI() {
+        // 添加子控件
         view.addSubview(textView)
         view.addSubview(photoSelectorVC.view)
         view.addSubview(tooBar)

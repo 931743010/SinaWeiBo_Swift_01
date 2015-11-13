@@ -21,12 +21,16 @@ class YYStatusTopView: UIView {
                 //iconView.yy_setImageWithURL(NSURL(string: iconUrl))
                 iconView.yy_setImageWithURL(NSURL(string: iconUrl), placeholderImage: UIImage(named: "avatar_default_small"))
             }
-            nameLabel.text = status?.user?.name                       // 用户昵称
-            timeLabel.text = status?.created_at                       // 微博时间
-            sourceLabel.text = "来自iPhone 6s plus"                    // 微博来源
-            mbrankImgView.image = status?.user?.mbrankImage           // 会员等级
-            verifiedImgView.image = status?.user?.verified_typeImage  // 认证用户
-            
+            // 用户昵称
+            nameLabel.text = status?.user?.name
+            // 微博时间
+            timeLabel.text = NSDate.sinaStringToDate((status?.created_at) ?? "").sinaDateDescription()
+            // 微博来源
+            sourceLabel.text = status?.source
+            // 会员等级
+            mbrankImgView.image = status?.user?.mbrankImage
+            // 认证用户
+            verifiedImgView.image = status?.user?.verified_typeImage
             // 判断是否Vip,显示不同颜色的昵称
             if let vip = status?.user?.mbrank {
                 nameLabel.textColor = vip > 0 && vip <= 6 ? UIColor.orangeColor() : UIColor.darkGrayColor()

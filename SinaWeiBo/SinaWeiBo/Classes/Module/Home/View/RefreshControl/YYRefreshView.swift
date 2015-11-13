@@ -28,9 +28,10 @@ class YYRefreshView: UIView {
     }
     
     /// 旋转箭头view
-    func rotationArrowView(isUp: Bool, text: String) {
+    func rotationArrowView(isUp: Bool, text: String, textColor: UIColor) {
         UIView.animateWithDuration(0.25) { () -> Void in
             self.textLabel.text = text
+            self.textLabel.textColor = textColor
             self.arrowView.transform = isUp ? CGAffineTransformMakeRotation(CGFloat(M_PI - 0.001)) : CGAffineTransformIdentity
         }
     }

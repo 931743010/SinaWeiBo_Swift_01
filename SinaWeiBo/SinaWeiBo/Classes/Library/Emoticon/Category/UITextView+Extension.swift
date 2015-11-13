@@ -60,27 +60,10 @@ extension UITextView {
         }
         
         // 添加图片表情
-        if let pngPath = emotion.pngPath {
-            // 创建文本附件
-            let attachment = YYTextAttachment()
+        if let _ = emotion.pngPath {
             
-            // 为附件赋值表情的图片的名称
-            attachment.name = emotion.chs
-            
-            // 获得文本内容的线高
-            let height = font?.lineHeight ?? 20
-            
-            // 设置附件的大小
-            attachment.bounds = CGRect(x: 0, y: -(height * 0.2), width: height, height: height)
-            
-            // 将image 添加到附件
-            attachment.image = UIImage(contentsOfFile: pngPath)
-            
-            // 将附件添加到属性文本
-            let attrString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
-            
-            // 给属性文本添加font属性(没有font属性图片后面的表情会很小)
-            attrString.addAttribute(NSFontAttributeName, value: font!, range: NSRange(location: 0, length: 1))
+            // 将表情模型转换成带表情图片的属性文本字符串
+            let attrString = emotion.emoticonToAttrString(font!)
             
             // 记录选中范围
             let oldSelectedRange = selectedRange
@@ -104,5 +87,28 @@ extension UITextView {
             NSNotificationCenter.defaultCenter().postNotificationName(UITextViewTextDidChangeNotification, object: self)
         }
     }
+    
+    func test() {
+        /* 创建文本附件
+        let attachment = YYTextAttachment()
 
+        // 为附件赋值表情的图片的名称
+        attachment.name = emotion.chs
+
+        // 获得文本内容的线高
+        let height = font?.lineHeight ?? 20
+
+        // 设置附件的大小
+        attachment.bounds = CGRect(x: 0, y: -(height * 0.2), width: height, height: height)
+
+        // 将image 添加到附件
+        attachment.image = UIImage(contentsOfFile: pngPath)
+
+        // 将附件添加到属性文本
+        let attrString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+
+        // 给属性文本添加font属性(没有font属性图片后面的表情会很小)
+        attrString.addAttribute(NSFontAttributeName, value: font!, range: NSRange(location: 0, length: 1))
+        */
+    }
 }

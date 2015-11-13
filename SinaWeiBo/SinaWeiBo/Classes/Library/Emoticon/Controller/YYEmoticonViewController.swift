@@ -6,7 +6,8 @@
 //  Copyright © 2015年 Arvin. All rights reserved.
 //
 /*
-   使用控制器的view作为textView的自定义键盘,控制器view的大小只有在viewDidAppear方法里才能确定
+   使用控制器的view作为textView的自定义键盘
+   控制器view的大小只有在viewDidAppear方法里才能确定
 */
 import UIKit
 
@@ -38,18 +39,18 @@ class YYEmoticonViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         
-        // 添加约束
+        // addConstraints
         // collectionView水平方向
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[cv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         // toolView水平方向
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[tb]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        // 垂直方向
+        // toolView垂直方向
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[cv]-[tb]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        // 设置toolbar
+        // setupToolBar
         setupToolBar()
         
-        // 设置collectionView
+        // setupCollectionView
         setupCollectionView()
     }
     

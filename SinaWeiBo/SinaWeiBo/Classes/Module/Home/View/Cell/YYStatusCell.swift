@@ -12,6 +12,9 @@ import UIKit
 class YYStatusCell: UITableViewCell {
     
     //  MARK: - 属性
+    /// 代理属性
+    var cellDelegate: YYStatusCellDelegate?
+    
     /// 微博配图约束宽度
     var pictureViewWidthCons: NSLayoutConstraint?
     
@@ -27,7 +30,10 @@ class YYStatusCell: UITableViewCell {
             topView.status = status
             
             // 设置微博内容
-            contentLabel.text = status?.text
+            //contentLabel.text = status?.text
+            
+            // 设置带表情图片的微博内容
+            contentLabel.attributedText = status?.attrText
             contentLabel.sizeToFit()
             
             // 将微博模型赋值给配图
@@ -97,7 +103,7 @@ class YYStatusCell: UITableViewCell {
         contentView.addConstraint(NSLayoutConstraint(item: contentLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: UIScreen.width() - 2 * 8))
         
         // 底部view
-        bottomView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: pictureView, size: CGSize(width: UIScreen.width(), height: 44), offset: CGPoint(x: -8, y: 8))
+        bottomView.ff_AlignVertical(type: ff_AlignType.BottomLeft, referView: pictureView, size: CGSize(width: UIScreen.width(), height: 34), offset: CGPoint(x: -8, y: 8))
         
         // contentView底部与bottomView底部重合
         //contentView.addConstraint(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: bottomView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
@@ -109,9 +115,10 @@ class YYStatusCell: UITableViewCell {
     private lazy var topView: YYStatusTopView = YYStatusTopView()
     
     /// 微博内容
-    lazy var contentLabel: UILabel = {
-        let label = UILabel(fontSize: 14, textColor: UIColor.blackColor())
+    lazy var contentLabel: FFLabel = {
+        let label = FFLabel(fontSize: 14, textColor: UIColor.blackColor())
         label.numberOfLines = 0
+        label.labelDelegate = self
         return label
     }()
     
@@ -122,4 +129,30 @@ class YYStatusCell: UITableViewCell {
     lazy var bottomView: YYStatusBottomView = YYStatusBottomView()
     
 }
+
+// MARK: - 扩展:FFLabelDelegate代理方法
+extension YYStatusCell: FFLabelDelegate {
+    // 当高亮文字被点击时,触发
+    func labelDidSelectedLinkText(label: FFLabel, text: String) {
+        // print(__FUNCTION__)
+        if text.hasPrefix("http") {
+            // print("text: \(text)")
+            // 通知代理
+            cellDelegate?.cellTextClick(text)
+            
+        } else if text.hasPrefix("@") {
+            print("text: \(text)")
+            
+        } else if text.hasPrefix("#") && text.hasSuffix("#") {
+            print("text: \(text)")
+        }
+    }
+}
+
+// MARK: - 代理方法
+protocol YYStatusCellDelegate: NSObjectProtocol {
+    // cell的高亮文字被点击
+    func cellTextClick(text: String)
+}
+
 

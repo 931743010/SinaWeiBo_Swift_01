@@ -22,10 +22,24 @@ class YYStatus: NSObject {
     var id: Int = 0
     
     /// 微博来源
-    var source: String?
+    var source: String? {
+        // 修改来源
+        didSet {
+            // 在didSet方法中再次修改属性是不会调用属性监视器的
+            source = source?.linkSource() ?? ""
+        }
+    }
     
     /// 微博信息内容
-    var text: String?
+    var text: String? {
+        didSet {
+            // 获取带表情图片属性文本
+            attrText = YYEmoticon.emoticonStringToEmoticonAttrString(text!, font: UIFont.systemFontOfSize(14))
+        }
+    }
+    
+    /// 带表情图片的微博内容
+    var attrText: NSAttributedString?
     
     /// cell的缓存行高
     var rowHeight: CGFloat?

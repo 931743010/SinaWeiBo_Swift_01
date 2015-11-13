@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37DCA41ADDA4D10682A44B0C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46626C9CB1C18B0D3A122906 /* Pods.framework */; };
+		A212B3321BF4A438000AB972 /* YYHomeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212B3311BF4A438000AB972 /* YYHomeWebViewController.swift */; };
 		A23011DE1BECCCEA00BC5222 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23011DD1BECCCEA00BC5222 /* Test.storyboard */; };
 		A24EE5F01BE495F70035F04F /* YYHomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */; };
 		A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252B6401BDE5A1F00ECF5D4 /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 		A26166D81BEF6D310091BE78 /* YYEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D01BEF6D310091BE78 /* YYEmoticon.swift */; };
 		A26166DA1BEF6D310091BE78 /* YYEmoticonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D31BEF6D310091BE78 /* YYEmoticonCell.swift */; };
 		A26166DB1BEF6D310091BE78 /* YYTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */; };
+		A262B47F1BF41EC3006F0666 /* FFLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262B47E1BF41EC3006F0666 /* FFLabel.swift */; };
 		A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641651BE51DBF00CF6727 /* YYStatusCell.swift */; };
 		A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641671BE51E4900CF6727 /* YYStatusTopView.swift */; };
 		A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26641691BE521B600CF6727 /* UILabel+Extension.swift */; };
@@ -49,6 +51,8 @@
 		A2BF30881BE7636900D3AA73 /* YYStatusForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF30871BE7636900D3AA73 /* YYStatusForwardCell.swift */; };
 		A2BF308A1BE771F600D3AA73 /* YYStatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF30891BE771F600D3AA73 /* YYStatusNormalCell.swift */; };
 		A2C5A90D1BE6788E000BE44A /* YYStatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C5A90C1BE6788E000BE44A /* YYStatusPictureView.swift */; };
+		A2CD1B291BF38D1F00E33A8D /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CD1B281BF38D1F00E33A8D /* NSDate+Extension.swift */; };
+		A2CD1B4B1BF3A0B200E33A8D /* String+Regular.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CD1B4A1BF3A0B200E33A8D /* String+Regular.swift */; };
 		A2DC16541BE137290038781E /* YYUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC16531BE137290038781E /* YYUserAccount.swift */; };
 		A2DEF15F1BE4F34800BCA9BA /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */; };
 		A2DEF1631BE4FA9A00BCA9BA /* YYStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */; };
@@ -60,6 +64,7 @@
 		46626C9CB1C18B0D3A122906 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9A528CC5F23DB904463BD6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9F89B815AE5A9A70C8AB9E5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A212B3311BF4A438000AB972 /* YYHomeWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYHomeWebViewController.swift; sourceTree = "<group>"; };
 		A23011DD1BECCCEA00BC5222 /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		A24EE5EF1BE495F70035F04F /* YYHomeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYHomeTitleView.swift; sourceTree = "<group>"; };
 		A252B63D1BDE5A1F00ECF5D4 /* SinaWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinaWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +86,7 @@
 		A26166D01BEF6D310091BE78 /* YYEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYEmoticon.swift; sourceTree = "<group>"; };
 		A26166D31BEF6D310091BE78 /* YYEmoticonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYEmoticonCell.swift; sourceTree = "<group>"; };
 		A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYTextAttachment.swift; sourceTree = "<group>"; };
+		A262B47E1BF41EC3006F0666 /* FFLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFLabel.swift; sourceTree = "<group>"; };
 		A26641651BE51DBF00CF6727 /* YYStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusCell.swift; sourceTree = "<group>"; };
 		A26641671BE51E4900CF6727 /* YYStatusTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusTopView.swift; sourceTree = "<group>"; };
 		A26641691BE521B600CF6727 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		A2BF30871BE7636900D3AA73 /* YYStatusForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusForwardCell.swift; sourceTree = "<group>"; };
 		A2BF30891BE771F600D3AA73 /* YYStatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusNormalCell.swift; sourceTree = "<group>"; };
 		A2C5A90C1BE6788E000BE44A /* YYStatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatusPictureView.swift; sourceTree = "<group>"; };
+		A2CD1B281BF38D1F00E33A8D /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		A2CD1B4A1BF3A0B200E33A8D /* String+Regular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regular.swift"; sourceTree = "<group>"; };
 		A2DC16531BE137290038781E /* YYUserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYUserAccount.swift; sourceTree = "<group>"; };
 		A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatus.swift; sourceTree = "<group>"; };
@@ -183,6 +191,7 @@
 		A252B6531BDE5B3D00ECF5D4 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				A262B47D1BF41EC3006F0666 /* FFLabel */,
 				A26166C91BEF6D310091BE78 /* Emoticon */,
 				A2A589361BF2FE9800397A8C /* PhotoSelector */,
 				A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */,
@@ -262,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				A252B66C1BDE635700ECF5D4 /* YYHomeViewController.swift */,
+				A212B3311BF4A438000AB972 /* YYHomeWebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -393,12 +403,14 @@
 		A252B66B1BDE61EC00ECF5D4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A2CD1B4A1BF3A0B200E33A8D /* String+Regular.swift */,
+				A2CD1B281BF38D1F00E33A8D /* NSDate+Extension.swift */,
 				A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */,
-				A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */,
 				A26641691BE521B600CF6727 /* UILabel+Extension.swift */,
 				A255BD2E1BE648BE0067D62B /* UIButton+Extension.swift */,
 				A255BD281BE62B4B0067D62B /* UIScreen+Extension.swift */,
 				A255BD2A1BE62F390067D62B /* UIImageView+Extension.swift */,
+				A2B11AD71BE399E200F28ABF /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -446,6 +458,14 @@
 				A26166D41BEF6D310091BE78 /* YYTextAttachment.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A262B47D1BF41EC3006F0666 /* FFLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A262B47E1BF41EC3006F0666 /* FFLabel.swift */,
+			);
+			path = FFLabel;
 			sourceTree = "<group>";
 		};
 		A29203CF1BEB7614001C7A66 /* Compose */ = {
@@ -712,11 +732,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A26166D61BEF6D310091BE78 /* YYEmoticonViewController.swift in Sources */,
+				A2CD1B4B1BF3A0B200E33A8D /* String+Regular.swift in Sources */,
 				A2B11AD81BE399E200F28ABF /* UIBarButtonItem+Extension.swift in Sources */,
 				A2709A7F1BED10DF003E292F /* YYPlaceholderTextView.swift in Sources */,
 				A2DEF15F1BE4F34800BCA9BA /* UIView+AutoLayout.swift in Sources */,
 				A252B6411BDE5A1F00ECF5D4 /* AppDelegate.swift in Sources */,
 				A266416A1BE521B600CF6727 /* UILabel+Extension.swift in Sources */,
+				A2CD1B291BF38D1F00E33A8D /* NSDate+Extension.swift in Sources */,
 				A26921951BE08C1C00CFF248 /* YYNetworkTools.swift in Sources */,
 				A29D34831BE1FE1B008E3E44 /* YYNewFeatureViewController.swift in Sources */,
 				A26166D81BEF6D310091BE78 /* YYEmoticon.swift in Sources */,
@@ -729,11 +751,13 @@
 				A2A071891BE8F03E00251F10 /* YYRefreshView.swift in Sources */,
 				A26166DB1BEF6D310091BE78 /* YYTextAttachment.swift in Sources */,
 				A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */,
+				A262B47F1BF41EC3006F0666 /* FFLabel.swift in Sources */,
 				A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */,
 				A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */,
 				A2BF30881BE7636900D3AA73 /* YYStatusForwardCell.swift in Sources */,
 				A2C5A90D1BE6788E000BE44A /* YYStatusPictureView.swift in Sources */,
 				A255BD2F1BE648BE0067D62B /* UIButton+Extension.swift in Sources */,
+				A212B3321BF4A438000AB972 /* YYHomeWebViewController.swift in Sources */,
 				A2B7D2AA1BDE9656003D3486 /* YYVisitorView.swift in Sources */,
 				A2A071851BE8ED6E00251F10 /* YYRefreshControl.swift in Sources */,
 				A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */,

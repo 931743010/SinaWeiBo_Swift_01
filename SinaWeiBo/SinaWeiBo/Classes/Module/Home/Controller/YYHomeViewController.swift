@@ -252,6 +252,9 @@ class YYHomeViewController: YYBaseViewController {
         // 设置cell的模型
         cell.status = status
         
+        // 指定代理
+        cell.cellDelegate = self
+        
         // 当最后一个cell显示的时候,加载更多数据
         // 如果指示器正在显示,表示正在加载数据,则不重复加载
         if indexPath.row == statuses!.count - 1 && !pullUpView.isAnimating(){
@@ -271,7 +274,6 @@ class YYHomeViewController: YYBaseViewController {
         indicator.color = UIColor.darkGrayColor()
         return indicator
     }()
-    
     
     
 //**************************************************************************************//
@@ -311,5 +313,27 @@ class YYHomeViewController: YYBaseViewController {
         UIView.animateWithDuration(0.25) { () -> Void in
             button.imageView?.transform = transform!
         }
+    }
+}
+
+// MARK: - 扩展:实现YYStatusCellDelegate代理方法
+extension YYHomeViewController: YYStatusCellDelegate {
+    // 实现代理方法
+    func cellTextClick(text: String) {
+        print("text: \(text)")
+        
+        // 创建网页浏览器控制器
+        let homeWebViewVC = YYHomeWebViewController()
+        // 设置url地址
+        homeWebViewVC.url = NSURL(string: text)
+        
+        // 隐藏底部tabBar
+        homeWebViewVC.hidesBottomBarWhenPushed = true
+        // push 到网页浏览控制器
+        navigationController?.pushViewController(homeWebViewVC, animated: true)
+        
+        // modal 到网页浏览控制器
+        //presentViewController(UINavigationController.init(rootViewController: homeWebViewVC), animated: true, completion: nil)
+        
     }
 }

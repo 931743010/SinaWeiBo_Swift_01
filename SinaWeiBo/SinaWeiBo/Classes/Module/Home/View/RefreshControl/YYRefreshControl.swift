@@ -28,19 +28,19 @@ class YYRefreshControl: UIRefreshControl {
                 // 调用自定义的view,开始刷新
                 refreshView.startLoading()
             }
-            // Y值小于 >= 0 时,直接返回,啥都不做
+            // Y值 >= 0 时,直接返回,啥都不做
             if frame.origin.y >= 0 {
                 return
             }
-            // Y值小于 -60 并且箭头是向下的(!isUp),使箭头向上
+            // Y值小于 -50 并且箭头是向下的(!isUp),使箭头向上
             if frame.origin.y < RefreshControlOffset && !isUp {
                 isUp = true
-                refreshView.rotationArrowView(isUp, text: "释放更新")
+                refreshView.rotationArrowView(isUp, text: "🙈释放更新", textColor: UIColor.orangeColor())
                 
-            // Y值大于 -60 并且箭头是向上的(isUp),使箭头向下
+            // Y值大于 -50 并且箭头是向上的(isUp),使箭头向下
             } else if frame.origin.y > RefreshControlOffset && isUp {
                 isUp = false
-                refreshView.rotationArrowView(isUp, text: "下拉刷新")
+                refreshView.rotationArrowView(isUp, text: "🙉下拉刷新", textColor: UIColor.darkGrayColor())
             }
         }
     }

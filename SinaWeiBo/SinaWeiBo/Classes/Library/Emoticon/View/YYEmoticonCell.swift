@@ -24,12 +24,14 @@ class YYEmoticonCell: UICollectionViewCell {
             }
             // 设置emoji表情
             emoticonButton.setTitle(emoticon?.emoji, forState: UIControlState.Normal)
-//            if let emoji = emoticon?.emoji {
-//                emoticonButton.setTitle(emoji, forState: UIControlState.Normal)
-//            } else {
-//                // 防止cell的title被重用,设置为nil
-//                emoticonButton.setTitle(nil, forState: UIControlState.Normal)
-//            }
+            /*///
+            if let emoji = emoticon?.emoji {
+            emoticonButton.setTitle(emoji, forState: UIControlState.Normal)
+            } else {
+            // 防止cell的title被重用,设置为nil
+            emoticonButton.setTitle(nil, forState: UIControlState.Normal)
+            }
+            *///
             // 判断是否是删除按钮模型
             if emoticon!.removeEmoticon {
                 // 设置删除按钮表情

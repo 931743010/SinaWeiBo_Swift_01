@@ -36,7 +36,7 @@ class YYPlaceholderTextView: UITextView {
         
         // 使用通知监听textView文本输入框的改变
         // object: 通知的发送者
-        // nil: 表示任何人发送的通知都可以监听
+        // nil:  表示任何人发送的通知都可以监听
         // self: 只有自己发送的通知才能监听到,这里只需要自己监听就好了
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
     }
