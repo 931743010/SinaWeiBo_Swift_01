@@ -63,6 +63,29 @@ class YYHomeViewController: YYBaseViewController {
         refreshControl?.beginRefreshing()
         // 再调用[sendActionsForControlEvents]方法才能触发refreshControl的ValueChanged事件
         refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        
+        // 注册通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "selectedPicture:", name: YYStatusPictureViewCellSelectedPictureNotification, object: nil)
+        
+    }
+    
+    deinit {
+        // 移除通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // 监听通知事件
+    func selectedPicture(notification: NSNotification) {
+        //print("userInfo: \(notification)")
+        guard let urls = notification.userInfo?[YYStatusPictureViewCellSelectedPictureURLKey] as? [NSURL] else {
+            return
+        }
+        guard let selectedIndex = notification.userInfo?[YYStatusPictureViewCellSelectedPictureIndexKey] as? Int else {
+            return
+        }
+        // 跳转控制器
+        let photoBrowserVC = YYPhotoBrowserViewController(urls: urls, selectedIndex: selectedIndex)
+        presentViewController(photoBrowserVC, animated: true, completion: nil)
     }
     
     ///
@@ -104,14 +127,14 @@ class YYHomeViewController: YYBaseViewController {
                 self.showTipView(count)
                 //return
             }
-//            if since_id > 0 {
-//                let count = statuses?.count ?? 0
-//                self.showTipView(count)
-//            }
-//            if statuses == nil || statuses?.count == 0 {
-//                return
-//            }
-            
+            /*
+            if since_id > 0 {
+                let count = statuses?.count ?? 0
+                self.showTipView(count)
+            }
+            if statuses == nil || statuses?.count == 0 {
+                return
+            }*/
             
             if since_id > 0 {
                 
@@ -156,7 +179,7 @@ class YYHomeViewController: YYBaseViewController {
         let dutrtion = 0.5
         UIView.animateWithDuration(dutrtion, animations: { () -> Void in
             // UIView.setAnimationRepeatAutoreverses(true)  动画反过来执行
-            // UIView.setAnimationRepeatCount(3)  动画重复执行指定的次数
+            // UIView.setAnimationRepeatCount(n)  重复执行指定的动画次数(n)
             tipLabel.frame.origin.y = tipLabelHeight
             }) { (_) -> Void in
                 UIView.animateWithDuration(dutrtion, delay: 0.5, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
@@ -298,7 +321,7 @@ class YYHomeViewController: YYBaseViewController {
     
     ///
     //  MARK: - 按钮点击事件
-    /// swift的方法需要加上 @objc 才能访问OC的方法
+    /// 
     @objc private func homeTitleViewClick(button: UIButton) {
         
         button.selected = !button.selected

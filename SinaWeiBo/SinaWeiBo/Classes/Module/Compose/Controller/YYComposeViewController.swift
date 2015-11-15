@@ -176,7 +176,7 @@ class YYComposeViewController: UIViewController {
     
     /// 设置自定义textView
     private func setupTextView() {
-        //textView.backgroundColor = UIColor.brownColor()
+        textView.backgroundColor = UIColor.whiteColor()
         // 添加约束
         // 相对于控制器view的内部左上角
         textView.ff_AlignInner(type: ff_AlignType.TopLeft, referView: view, size: nil)
@@ -205,14 +205,13 @@ class YYComposeViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[psv]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views ))
         
         // 垂直约束
-        //view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-160-[psv(190)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        //photoSelectorView.ff_AlignVertical(type: ff_AlignType.BottomRight, referView: view, size: <#T##CGSize?#>)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-160-[psv(190)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
         // 高度约束
-        view.addConstraint(NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0))
+        //view.addConstraint(NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0))
         // 底部重合
-        photoSelectorViewBttomCons = NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: view.frame.height * 0.7)
-        view.addConstraint(photoSelectorViewBttomCons!)
+        //photoSelectorViewBttomCons = NSLayoutConstraint(item: photoSelectorView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: view.frame.height * 0.7)
+        //view.addConstraint(photoSelectorViewBttomCons!)
         
     }
     

@@ -58,6 +58,8 @@
 		A2DEF1631BE4FA9A00BCA9BA /* YYStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */; };
 		A2DEF1651BE4FACC00BCA9BA /* YYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DEF1641BE4FACC00BCA9BA /* YYUser.swift */; };
 		A2E37D1E1BE2858700850E0B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */; };
+		A2EAC16D1BF767CE00A79D11 /* YYPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAC16B1BF767CE00A79D11 /* YYPhotoBrowserViewController.swift */; };
+		A2EAC16F1BF7684300A79D11 /* YYPhotoBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAC16E1BF7684300A79D11 /* YYPhotoBrowserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		A2DEF1621BE4FA9A00BCA9BA /* YYStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYStatus.swift; sourceTree = "<group>"; };
 		A2DEF1641BE4FACC00BCA9BA /* YYUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYUser.swift; sourceTree = "<group>"; };
 		A2E37D1D1BE2858700850E0B /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		A2EAC16B1BF767CE00A79D11 /* YYPhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYPhotoBrowserViewController.swift; sourceTree = "<group>"; };
+		A2EAC16E1BF7684300A79D11 /* YYPhotoBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYPhotoBrowserCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,15 @@
 				46626C9CB1C18B0D3A122906 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A220BCDE1BF64D3300E3F466 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				A2EAC16C1BF767CE00A79D11 /* View */,
+				A2EAC16A1BF767CE00A79D11 /* Controller */,
+			);
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		A23011DC1BECCCC400BC5222 /* Test */ = {
@@ -194,6 +207,7 @@
 				A262B47D1BF41EC3006F0666 /* FFLabel */,
 				A26166C91BEF6D310091BE78 /* Emoticon */,
 				A2A589361BF2FE9800397A8C /* PhotoSelector */,
+				A220BCDE1BF64D3300E3F466 /* PhotoBrowser */,
 				A2DEF15E1BE4F34800BCA9BA /* UIView+AutoLayout.swift */,
 			);
 			path = Library;
@@ -598,6 +612,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		A2EAC16A1BF767CE00A79D11 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A2EAC16B1BF767CE00A79D11 /* YYPhotoBrowserViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A2EAC16C1BF767CE00A79D11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2EAC16E1BF7684300A79D11 /* YYPhotoBrowserCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CC4646C59B67442312FAEC86 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +783,7 @@
 				A255BD2B1BE62F390067D62B /* UIImageView+Extension.swift in Sources */,
 				A262B47F1BF41EC3006F0666 /* FFLabel.swift in Sources */,
 				A26641661BE51DBF00CF6727 /* YYStatusCell.swift in Sources */,
+				A2EAC16F1BF7684300A79D11 /* YYPhotoBrowserCell.swift in Sources */,
 				A2B7D2A61BDE958B003D3486 /* YYMainTabBar.swift in Sources */,
 				A2BF30881BE7636900D3AA73 /* YYStatusForwardCell.swift in Sources */,
 				A2C5A90D1BE6788E000BE44A /* YYStatusPictureView.swift in Sources */,
@@ -769,6 +800,7 @@
 				A26641681BE51E4900CF6727 /* YYStatusTopView.swift in Sources */,
 				A252B6731BDE63E700ECF5D4 /* YYProfileViewController.swift in Sources */,
 				A26166D51BEF6D310091BE78 /* UITextView+Extension.swift in Sources */,
+				A2EAC16D1BF767CE00A79D11 /* YYPhotoBrowserViewController.swift in Sources */,
 				A2DEF1651BE4FACC00BCA9BA /* YYUser.swift in Sources */,
 				A2BD47E41BDFC19A00B414E6 /* YYAuthorizeViewController.swift in Sources */,
 				A2BF308A1BE771F600D3AA73 /* YYStatusNormalCell.swift in Sources */,

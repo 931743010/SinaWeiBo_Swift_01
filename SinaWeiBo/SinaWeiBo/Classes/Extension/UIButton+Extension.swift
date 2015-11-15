@@ -23,6 +23,15 @@ extension UIButton {
         
     }
     
+    convenience init(title: String, backgroundImageName: String, titleColor: UIColor, fontSize: CGFloat) {
+        // 先调用本类指定构造函数
+        self.init()
+        setTitle(title, forState: UIControlState.Normal)
+        titleLabel?.font = UIFont.systemFontOfSize(fontSize)
+        setTitleColor(titleColor, forState: UIControlState.Normal)
+        setBackgroundImage(UIImage(named: backgroundImageName), forState: UIControlState.Normal)
+    }
+
     /* 便利构造函数(方式2)
     convenience init(title: String, imageName: String, titleColor: UIColor = UIColor.darkGrayColor(), fontSize: CGFloat = 12) {
         self.init()

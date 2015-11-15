@@ -18,6 +18,7 @@ class YYStatusForwardCell: YYStatusCell {
             // print("子类属性监视器")
             let name = status?.retweeted_status?.user?.name ?? ""
             //let text = status?.retweeted_status?.text ?? ""
+            //forwardLabel.text = "@\(name):\(text)"
             
             // 可变的属性文本字符串
             let nameAttr = NSMutableAttributedString(string: "@\(name): ")
@@ -29,7 +30,6 @@ class YYStatusForwardCell: YYStatusCell {
             }
             // 设置被转发微博的内容
             forwardLabel.attributedText = nameAttr
-            //forwardLabel.text = "@\(name):\(text)"
             forwardLabel.sizeToFit()
         }
     }
@@ -72,7 +72,7 @@ class YYStatusForwardCell: YYStatusCell {
     /// 被转发微博的背景按钮
     private lazy var bkgButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(white: 0.95, alpha: 0.5)
+        button.backgroundColor = UIColor(white: 0.95, alpha: 0.6)
         return button
     }()
     

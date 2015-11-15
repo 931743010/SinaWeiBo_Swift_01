@@ -60,21 +60,33 @@ class YYStatus: NSObject {
             if count == 0 {
                 return
             }
-            // 创建storePictureUrls数组
+            // 保存微博缩略图url地址的数组
             storePicture_urls = [NSURL]()
+            
+            // 保存微博大图url地址的数组
+            largeStorePicture_urls = [NSURL]()
+            
             // 遍历微博配图数组
             for dict in pic_urls! {
                 // 转换成url字符串
                 if let urlString = dict["thumbnail_pic"] as? String {
-                    // 将数组里的url转换成NSURL追加给storePictureUrls
+                    // 将数组里的url转换成NSURL添加到storePictureUrls
                     storePicture_urls?.append(NSURL(string: urlString)!)
+                    
+                    // 创建大图的url,将微博配图的url地址中的thumbnail替换成large
+                    let largeUrlString = urlString.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    // 将大图url地址添加到数组
+                    largeStorePicture_urls?.append(NSURL(string: largeUrlString)!)
                 }
             }
         }
     }
     
     /// 返回微博配图对应的URL数组
-    var storePicture_urls: [NSURL]?
+    private var storePicture_urls: [NSURL]?
+    
+    /// 返回微博大图对应的URL数组
+    private var largeStorePicture_urls: [NSURL]?
     
     /// 计算型属性
     /// 如果是原创微博就返回原创微博的配图,如果是转发微博就返回转发微博的配图
@@ -82,6 +94,15 @@ class YYStatus: NSObject {
         get {
             // 判断是否转发微博
             return retweeted_status == nil ? storePicture_urls : retweeted_status?.storePicture_urls
+        }
+    }
+    
+    /// 计算型属性
+    /// 如果是原创微博就返回原创微博的大图,如果是转发微博就返回转发微博的大图
+    var largePicture_urls: [NSURL]? {
+        get {
+            // 判断是否转发微博
+            return retweeted_status == nil ? largeStorePicture_urls : retweeted_status?.largeStorePicture_urls
         }
     }
     

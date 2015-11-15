@@ -134,7 +134,6 @@ class YYStatusCell: UITableViewCell {
 extension YYStatusCell: FFLabelDelegate {
     // 当高亮文字被点击时,触发
     func labelDidSelectedLinkText(label: FFLabel, text: String) {
-        // print(__FUNCTION__)
         if text.hasPrefix("http") {
             // print("text: \(text)")
             // 通知代理

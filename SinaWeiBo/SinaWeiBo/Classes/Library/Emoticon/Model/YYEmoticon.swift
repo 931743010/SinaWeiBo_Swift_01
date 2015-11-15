@@ -366,11 +366,11 @@ class YYEmoticon: NSObject {
             
             // 截取范围内的表情文本
             let emoticonSting = (string as NSString).substringWithRange(range)
-            print("表情字符串: \(emoticonSting)")
+            //print("表情字符串: \(emoticonSting)")
             
             // 根据表情文本获取对应的表情模型
             if let emoticonStr = YYEmoticon.emoticonStringToEmoticon(emoticonSting) {
-                print("找到表情: \(emoticonStr)")
+                //print("找到表情: \(emoticonStr)")
                 
                 // 将表情模型转换成带表情图片的属性文本字符串
                 let attrString = emoticonStr.emoticonToAttrString(font)

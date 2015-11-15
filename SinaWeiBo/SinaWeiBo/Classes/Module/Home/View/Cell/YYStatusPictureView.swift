@@ -10,6 +10,13 @@
 import UIKit
 import SDWebImage
 
+/// 通知名称
+let YYStatusPictureViewCellSelectedPictureNotification = "YYStatusPictureViewCellSelectedPictureNotification"
+/// URLKey
+let YYStatusPictureViewCellSelectedPictureURLKey = "YYStatusPictureViewCellSelectedPictureURLKey"
+/// IndexKey
+let YYStatusPictureViewCellSelectedPictureIndexKey = "YYStatusPictureViewCellSelectedPictureIndexKey"
+
 class YYStatusPictureView: UICollectionView {
     
     /// 配图列数
@@ -75,7 +82,10 @@ class YYStatusPictureView: UICollectionView {
                 size = image.size
             }
             if size.width < 60 {
-                size.width = 90
+                size.width = 60
+            } else if size.width > 150 && size.height > 120 {
+                size.width = 150
+                size.height = 120
             }
             // 重新赋值itemSize
             layout.itemSize = size
@@ -112,6 +122,8 @@ class YYStatusPictureView: UICollectionView {
         super.init(frame: CGRectZero, collectionViewLayout: layout)
         // 设置数据源
         dataSource = self
+        // 指定代理
+        delegate = self
         // 去除CollectionView的背景色
         backgroundColor = UIColor.clearColor()
         // 注册自定义cell
@@ -124,7 +136,7 @@ class YYStatusPictureView: UICollectionView {
 
 
 // MARK: - 扩展 YYStatusPictureView
-extension YYStatusPictureView: UICollectionViewDataSource {
+extension YYStatusPictureView: UICollectionViewDataSource, UICollectionViewDelegate {
     ///
     /// collectionView 数据源方法
     ///
@@ -139,11 +151,25 @@ extension YYStatusPictureView: UICollectionViewDataSource {
         // 从微博模型获取配图赋值给cell
         cell.imageUrl = status?.picture_urls![indexPath.item]
         
-        // TODO: -----重要记号-----
+        // TODO: -----重要标记-----
         // let url = status?.pic_urls?[indexPath.item]["thumbnail_pic"] as? String
         // cell.imageUrl = NSURL(string: url!)
         
         return cell
+    }
+    
+    // 监听cell的点击事件
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        //print("\(status?.largePicture_urls)")
+        
+        // 传值嵌套层次太多,使用代理或闭包不合适
+        // 改为使用通知,将URL地址和indexpa.item传递给外面的控制器
+        let userInfo: [String: AnyObject] = [
+            YYStatusPictureViewCellSelectedPictureURLKey: (status?.largePicture_urls)!,
+            YYStatusPictureViewCellSelectedPictureIndexKey: indexPath.item]
+        
+        // 发送通知,传递URL地址和indexpa.item
+        NSNotificationCenter.defaultCenter().postNotificationName(YYStatusPictureViewCellSelectedPictureNotification, object: self, userInfo: userInfo)
     }
 }
 

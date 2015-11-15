@@ -124,12 +124,12 @@ extension YYPhotoSelectorViewController: UIImagePickerControllerDelegate, UINavi
     // 选择照片的代理方法
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        print("原始图: \(image)")
+        //print("原始图: \(image)")
         
         // 当上传的图片比较大时,需要将其压缩
         let newImage = image.scaleImage()
         
-        print("压缩图: \(newImage)")
+        //print("压缩图: \(newImage)")
         
         if currentIndexPath?.item < photos.count {
             // 点击的是图片,替换图片
